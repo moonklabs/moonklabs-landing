@@ -149,31 +149,33 @@ export default function Hero() {
               className="flex items-center gap-2 px-4 py-3"
               style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
             >
-              <div className="w-2 h-2 rounded-full bg-violet-500" />
-              <span className="text-white text-xs font-medium tracking-wide">MOONKLABS AGENT</span>
-              <div className="ml-auto flex gap-1">
-                <div className="w-2 h-2 rounded-full bg-zinc-700" />
-                <div className="w-2 h-2 rounded-full bg-zinc-700" />
-                <div className="w-2 h-2 rounded-full bg-zinc-700" />
-              </div>
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-violet-500 opacity-60 animate-ping" />
+                <span className="relative inline-flex w-2 h-2 rounded-full bg-violet-500" />
+              </span>
+              <span className="text-white text-xs font-medium tracking-wide">AI 에이전트 · 오늘의 업무 보고</span>
+              <span className="ml-auto text-[10px] text-zinc-500">오전 6:00</span>
             </div>
 
             {/* Body */}
-            <div className="p-4 space-y-4 text-xs font-mono">
+            <div className="p-4 space-y-4 text-xs">
               <div className="space-y-2">
-                <div className="text-zinc-500 text-[10px] tracking-widest">2026.04.06 · AGENT RUN</div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-400">Pipeline status</span>
-                  <span className="text-green-400 font-semibold">+ 12 runs</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-400">Latency p95</span>
-                  <span className="text-zinc-300">148ms</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-400">Incidents</span>
-                  <span className="text-zinc-400">0</span>
-                </div>
+                <div className="text-zinc-500 text-[10px] tracking-widest">밤사이 자동으로 처리한 일</div>
+                {[
+                  { time: "새벽 2:10", task: "어제 매출 · 광고 성과 정리 완료" },
+                  { time: "새벽 3:40", task: "품절 위험 상품 2건 미리 발견" },
+                  { time: "새벽 5:15", task: "주간 보고서 초안 작성 완료" },
+                ].map((item) => (
+                  <div key={item.time} className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex w-3.5 h-3.5 shrink-0 items-center justify-center rounded-full bg-green-500/15 text-green-400 text-[9px]">
+                      ✓
+                    </span>
+                    <div className="flex-1 flex justify-between gap-2">
+                      <span className="text-zinc-300">{item.task}</span>
+                      <span className="text-zinc-600 shrink-0">{item.time}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               <div
@@ -182,25 +184,25 @@ export default function Hero() {
               />
 
               <div
-                className="p-3 space-y-1"
+                className="p-3 space-y-1.5"
                 style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)" }}
               >
-                <div className="text-violet-400 text-[10px] tracking-widest font-sans">◆ AGENT DIAGNOSIS</div>
-                <p className="text-zinc-300 leading-relaxed">
-                  데이터 파이프라인 정상. 추가 조치 불필요.
+                <div className="text-violet-400 text-[10px] tracking-widest">에이전트의 제안 · 확인이 필요해요</div>
+                <p className="text-zinc-200 leading-relaxed">
+                  광고비가 새는 캠페인을 찾았습니다. 예산을 조정하면{" "}
+                  <strong className="text-white">월 약 120만원 절감</strong>이 예상됩니다.
                 </p>
-                <p className="text-zinc-500">다음 실행: 05:00 KST</p>
+                <div className="flex gap-2 pt-1">
+                  <span className="px-2.5 py-1 bg-violet-600 text-white text-[10px] font-medium">승인하기</span>
+                  <span className="px-2.5 py-1 text-zinc-400 text-[10px]" style={{ border: "1px solid rgba(255,255,255,0.15)" }}>
+                    자세히 보기
+                  </span>
+                </div>
               </div>
 
-              <div className="space-y-1.5">
-                <div className="text-zinc-600 text-[10px] tracking-widest">실행 대기</div>
-                {["벡터 인덱스 재구축", "주간 리포트 합성", "MCP 툴 상태 점검"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-zinc-500">
-                    <div className="w-1 h-1 rounded-full bg-zinc-700" />
-                    {item}
-                  </div>
-                ))}
-              </div>
+              <p className="text-zinc-600 text-[10px] leading-relaxed">
+                에이전트는 담당자의 승인 없이는 실행하지 않습니다 · 다음 점검 오전 9:00
+              </p>
             </div>
           </div>
         </motion.div>
