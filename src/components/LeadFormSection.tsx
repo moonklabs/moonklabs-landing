@@ -48,7 +48,7 @@ export default function LeadFormSection() {
       ref={ref}
       aria-labelledby="contact-heading"
       className="py-32 px-6"
-      style={{ background: "#fff" }}
+      style={{ background: "#FAFAFA" }}
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Left: headline + trust notes */}
@@ -113,7 +113,7 @@ export default function LeadFormSection() {
           {state === "success" ? (
             <div
               className="h-full flex flex-col items-start justify-center gap-4 p-10"
-              style={{ background: "#F8F7FC", border: "1px solid rgba(124,58,237,0.25)" }}
+              style={{ background: "#fff", border: "1px solid rgba(124,58,237,0.3)", boxShadow: "0 12px 40px rgba(15,10,40,0.06)" }}
             >
               <span className="w-10 h-10 flex items-center justify-center bg-violet-600 text-white text-lg">✓</span>
               <h3 className="text-black text-2xl font-bold" style={{ letterSpacing: "-0.02em" }}>
@@ -128,7 +128,15 @@ export default function LeadFormSection() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 p-8 lg:p-10" style={{ background: "#FAFAFA", border: "1px solid rgba(0,0,0,0.08)" }}>
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 p-8 lg:p-10"
+              style={{
+                background: "#fff",
+                border: "1px solid rgba(0,0,0,0.08)",
+                boxShadow: "0 12px 40px rgba(15,10,40,0.06)",
+              }}
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label className="space-y-1.5 block">
                   <span className="text-xs text-zinc-500 tracking-wide">회사명 *</span>

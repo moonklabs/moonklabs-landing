@@ -13,14 +13,17 @@ const lineVariant = {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center pt-20 pb-16 px-6 border-b border-white/10">
+    <section
+      className="relative overflow-hidden min-h-screen flex items-center pt-20 pb-16 px-6"
+      style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+    >
       {/* Decorative background — grid + violet orb */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
         <div
-          className="absolute inset-0 opacity-[0.18]"
+          className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+              "linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px)",
             backgroundSize: "48px 48px",
             maskImage:
               "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)",
@@ -31,12 +34,12 @@ export default function Hero() {
         <div
           className="absolute"
           style={{
-            top: "10%",
-            left: "55%",
+            top: "8%",
+            left: "58%",
             width: "640px",
             height: "640px",
             background:
-              "radial-gradient(circle, rgba(124,58,237,0.25) 0%, rgba(124,58,237,0.08) 40%, transparent 70%)",
+              "radial-gradient(circle, rgba(124,58,237,0.10) 0%, rgba(124,58,237,0.04) 40%, transparent 70%)",
             filter: "blur(40px)",
           }}
         />
@@ -48,7 +51,7 @@ export default function Hero() {
             width: "500px",
             height: "500px",
             background:
-              "radial-gradient(circle, rgba(56,189,248,0.12) 0%, rgba(56,189,248,0.04) 40%, transparent 70%)",
+              "radial-gradient(circle, rgba(56,189,248,0.07) 0%, rgba(56,189,248,0.03) 40%, transparent 70%)",
             filter: "blur(60px)",
           }}
         />
@@ -62,15 +65,15 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <span
-              className="inline-flex items-center gap-2 text-xs tracking-widest text-zinc-400 px-3 py-1.5"
-              style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+              className="inline-flex items-center gap-2 text-xs tracking-widest text-zinc-600 px-3 py-1.5 bg-white/70"
+              style={{ border: "1px solid rgba(0,0,0,0.12)" }}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-500 inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-violet-600 inline-block" />
               AI NATIVE ENGINEERING STUDIO · 2026
             </span>
           </motion.div>
 
-          <div className="hero-title text-white overflow-hidden">
+          <div className="hero-title text-black overflow-hidden">
             {["에이전트가", "팀이 되는", "엔지니어링을", "설계합니다"].map((line, i) => (
               <div key={i} className="overflow-hidden">
                 <motion.div
@@ -91,15 +94,13 @@ export default function Hero() {
             transition={{ delay: 0.6, duration: 0.5 }}
             className="space-y-1"
           >
-            <p className="text-zinc-200 text-lg leading-relaxed">
-              뭉클랩은 <strong>Sprintable</strong>과 <strong>Sellerking</strong>을 개발·운영하며 축적한
-              경험을 바탕으로, 기업이 실제 업무 체계 안에 <strong>AI Agent 자동화</strong>를 도입할 수
-              있도록 돕는 B2B 파트너입니다.
+            <p className="text-zinc-600 text-lg leading-relaxed">
+              뭉클랩은 <strong className="text-black">Sprintable</strong>과{" "}
+              <strong className="text-black">Sellerking</strong>을 개발·운영하며 축적한 경험을
+              바탕으로, 기업이 실제 업무 체계 안에{" "}
+              <strong className="text-black">AI Agent 자동화</strong>를 도입할 수 있도록 돕는 B2B
+              파트너입니다.
             </p>
-            {/* <p className="text-zinc-400 text-base leading-relaxed">
-              현장 실무에 최적화된 Agent 설계로 엔터프라이즈 자동화의 끊김 없는 도입을 지원합니다.
-              사람은 핵심 판단과 우선순위에 집중하고, 반복적 실행은 Agent가 구조적으로 전담합니다.
-            </p> */}
           </motion.div>
 
           <motion.div
@@ -111,13 +112,13 @@ export default function Hero() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#contact"
-                className="px-6 py-3 text-sm font-medium tracking-wide text-black bg-white hover:bg-zinc-100 transition-colors"
+                className="px-6 py-3 text-sm font-medium tracking-wide text-white bg-black hover:bg-zinc-800 transition-colors"
               >
                 도입 상담 신청 →
               </a>
               <a
                 href="#process"
-                className="px-6 py-3 text-sm font-medium tracking-wide text-white border border-white/20 hover:border-white/50 transition-colors"
+                className="px-6 py-3 text-sm font-medium tracking-wide text-black border border-black/20 hover:border-black/60 transition-colors"
               >
                 도입 프로세스 보기
               </a>
@@ -128,7 +129,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right: 40% — AI Chat Mock */}
+        {/* Right: 40% — AI Agent Mock (dark showcase card) */}
         <motion.div
           className="lg:col-span-2"
           initial={{ opacity: 0, x: 40 }}
@@ -139,7 +140,8 @@ export default function Hero() {
             className="rounded-none w-full max-w-sm ml-auto"
             style={{
               background: "#0D0D0D",
-              border: "1px solid rgba(255,255,255,0.1)",
+              border: "1px solid rgba(0,0,0,0.9)",
+              boxShadow: "0 24px 64px rgba(15,10,40,0.18)",
             }}
           >
             {/* Header */}

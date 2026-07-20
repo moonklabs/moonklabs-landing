@@ -60,10 +60,10 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <a href="#main" className="sr-only focus:not-sr-only fixed top-2 left-2 z-[100] bg-white text-black px-3 py-1 text-xs">
+      <a href="#main" className="sr-only focus:not-sr-only fixed top-2 left-2 z-[100] bg-black text-white px-3 py-1 text-xs">
         본문 바로가기
       </a>
-      <main id="main" className="bg-black min-h-screen">
+      <main id="main" className="bg-white min-h-screen">
         <Navigation />
         <Hero />
         <Marquee />

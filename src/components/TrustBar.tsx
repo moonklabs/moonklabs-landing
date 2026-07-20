@@ -17,7 +17,7 @@ function CountUp({ value, suffix, start }: { value: number; suffix: string; star
   return (
     <span className="tabular-nums">
       <motion.span>{rounded}</motion.span>
-      <span className="text-violet-400">{suffix}</span>
+      <span className="text-violet-600">{suffix}</span>
     </span>
   );
 }
@@ -31,7 +31,7 @@ export default function TrustBar() {
       ref={ref}
       aria-label="뭉클랩 운영 지표"
       className="py-14 px-6"
-      style={{ background: "#050505", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ background: "#FAFAFA", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
     >
       <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
         {trustMetrics.map((metric, i) => (
@@ -41,15 +41,15 @@ export default function TrustBar() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.08, duration: 0.5 }}
             className="space-y-2"
-            style={{ borderLeft: "1px solid rgba(124,58,237,0.4)", paddingLeft: "1.25rem" }}
+            style={{ borderLeft: "2px solid rgba(124,58,237,0.45)", paddingLeft: "1.25rem" }}
           >
             <div
-              className="text-white font-black"
+              className="text-black font-black"
               style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)", letterSpacing: "-0.03em", lineHeight: 1 }}
             >
               <CountUp value={metric.value} suffix={metric.suffix} start={inView} />
             </div>
-            <div className="text-sm text-zinc-300 font-medium">{metric.label}</div>
+            <div className="text-sm text-zinc-700 font-medium">{metric.label}</div>
             <div className="text-xs text-zinc-500">{metric.note}</div>
           </motion.div>
         ))}

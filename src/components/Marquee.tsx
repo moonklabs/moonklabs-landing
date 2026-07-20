@@ -19,7 +19,7 @@ export default function Marquee() {
   return (
     <div
       className="py-4 overflow-hidden"
-      style={{ background: "#fff", borderTop: "1px solid rgba(0,0,0,0.08)" }}
+      style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
     >
       <div className="marquee-inner">
         {repeated.map((item, i) => (

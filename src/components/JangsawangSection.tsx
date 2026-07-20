@@ -12,14 +12,14 @@ export default function JangsawangSection() {
       id="work"
       ref={ref}
       className="relative py-32 px-6 overflow-hidden"
-      style={{ background: "#000", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ background: "#FAFAFA", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
     >
       {/* Background ghost text */}
       <div
         className="absolute left-0 top-1/2 -translate-y-1/2 select-none pointer-events-none font-black leading-none"
         style={{
           fontSize: "18rem",
-          color: "rgba(255,255,255,0.03)",
+          color: "rgba(0,0,0,0.03)",
           letterSpacing: "-0.04em",
           whiteSpace: "nowrap",
         }}
@@ -36,9 +36,9 @@ export default function JangsawangSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5 }}
             >
-              <span className="text-xs text-violet-400 tracking-widest">SELLERKING · COMMERCE OPERATIONS AGENTS</span>
+              <span className="text-xs text-violet-600 tracking-widest font-medium">SELLERKING · COMMERCE OPERATIONS AGENTS</span>
               <h2
-                className="mt-3 text-white font-black"
+                className="mt-3 text-black font-black"
                 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.04em", lineHeight: 0.95 }}
               >
                 커머스 운영을
@@ -49,7 +49,7 @@ export default function JangsawangSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15, duration: 0.5 }}
-              className="text-zinc-400 text-sm leading-relaxed max-w-xl"
+              className="text-zinc-600 text-sm leading-relaxed max-w-xl"
             >
               Sellerking은 광고와 재고 운영처럼 숫자를 놓치면 바로 손실로 이어지는 업무를 위해 만든 Agent
               제품군입니다. 뭉클랩은 이커머스 현장에서 Agent가 실제 운영 신호를 어떻게 읽고 어떤 타이밍에
@@ -62,7 +62,7 @@ export default function JangsawangSection() {
             >
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 text-xs tracking-widest text-white border border-white/20 px-5 py-3 hover:bg-white hover:text-black transition-all duration-200"
+                className="inline-flex items-center gap-2 text-xs tracking-widest text-black border border-black/25 px-5 py-3 hover:bg-black hover:text-white transition-all duration-200"
               >
                 자세히 이야기하기 →
               </a>
@@ -78,7 +78,11 @@ export default function JangsawangSection() {
           >
             <div
               className="w-full"
-              style={{ background: "#0D0D0D", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{
+                background: "#0B0B0E",
+                border: "1px solid rgba(0,0,0,0.85)",
+                boxShadow: "0 24px 64px rgba(15,10,40,0.16)",
+              }}
             >
               <div
                 className="flex items-center gap-2 px-4 py-3"

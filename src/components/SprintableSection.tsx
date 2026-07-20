@@ -47,7 +47,7 @@ export default function SprintableSection() {
       id="products"
       ref={ref}
       className="py-32 px-6"
-      style={{ background: "#0D0D0D", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+      style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left: Code editor */}
@@ -60,8 +60,9 @@ export default function SprintableSection() {
           <div
             className="font-mono text-xs"
             style={{
-              background: "#080808",
-              border: "1px solid rgba(255,255,255,0.1)",
+              background: "#0B0B0E",
+              border: "1px solid rgba(0,0,0,0.85)",
+              boxShadow: "0 24px 64px rgba(15,10,40,0.16)",
             }}
           >
             {/* Editor header */}
@@ -99,10 +100,10 @@ export default function SprintableSection() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs text-violet-400 tracking-widest">SPRINTABLE · AGENT WORKFLOW SYSTEM</span>
+              <span className="text-xs text-violet-600 tracking-widest font-medium">SPRINTABLE · AGENT WORKFLOW SYSTEM</span>
             </div>
             <h2
-              className="text-white font-black"
+              className="text-black font-black"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.04em", lineHeight: 0.95 }}
             >
               엔지니어링 팀을
@@ -114,7 +115,7 @@ export default function SprintableSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.15, duration: 0.5 }}
-            className="text-zinc-500 text-sm leading-relaxed"
+            className="text-zinc-600 text-sm leading-relaxed"
           >
             Sprintable은 역할별 AI Agent를 생성·조율해 스프린트 계획, 실행, 검증, 문서화 같은 개발
             조직의 반복 업무를 구조적으로 자동화하는 시스템입니다. 개발팀 내부 사용 경험을 바탕으로
@@ -128,8 +129,8 @@ export default function SprintableSection() {
             className="space-y-2"
           >
             {features.map((feature, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm text-zinc-400">
-                <div className="w-1 h-1 rounded-full bg-violet-500 shrink-0" />
+              <div key={i} className="flex items-center gap-3 text-sm text-zinc-600">
+                <div className="w-1 h-1 rounded-full bg-violet-600 shrink-0" />
                 {feature}
               </div>
             ))}
@@ -142,7 +143,7 @@ export default function SprintableSection() {
           >
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 text-xs tracking-widest text-white border border-white/20 px-5 py-3 hover:bg-white hover:text-black transition-all duration-200"
+              className="inline-flex items-center gap-2 text-xs tracking-widest text-black border border-black/25 px-5 py-3 hover:bg-black hover:text-white transition-all duration-200"
             >
               자세히 이야기하기 →
             </a>
