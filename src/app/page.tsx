@@ -80,7 +80,7 @@ export default function Home() {
         <JangsawangSection />
         <ProcessSection />
         <EnterpriseSection />
-        <InsightsSection posts={sortedPosts().filter((p) => p.category !== "소식").slice(0, 3)} />
+        <InsightsSection posts={sortedPosts().slice(0, 3)} />
         <FAQSection />
         <LeadFormSection />
         <Footer />

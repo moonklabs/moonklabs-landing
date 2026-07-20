@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
-import type { Post } from "@/content/posts";
+import { categoryStyle, type Post } from "@/content/posts";
 
 function formatDate(date: string) {
   const [y, m, d] = date.split("-");
@@ -32,7 +32,7 @@ export default function InsightsSection({ posts }: { posts: Post[] }) {
               className="inline-block text-xs tracking-widest text-violet-700 font-medium px-4 py-1.5 rounded-full"
               style={{ background: "rgba(124,58,237,0.07)" }}
             >
-              INSIGHTS
+              NEWS &amp; INSIGHTS
             </motion.span>
             <motion.h2
               id="insights-heading"
@@ -42,7 +42,7 @@ export default function InsightsSection({ posts }: { posts: Post[] }) {
               className="font-display font-bold"
               style={{ fontSize: "clamp(2rem, 3.8vw, 3rem)", letterSpacing: "-0.02em", lineHeight: 1.2, color: "#1C1B17" }}
             >
-              현장에서 검증한 인사이트
+              뭉클랩의 소식과 인사이트
             </motion.h2>
           </div>
           <motion.div
@@ -75,8 +75,8 @@ export default function InsightsSection({ posts }: { posts: Post[] }) {
               >
                 <div className="flex items-center gap-2.5 text-xs">
                   <span
-                    className="px-3 py-1 rounded-full font-medium text-violet-700"
-                    style={{ background: "rgba(124,58,237,0.07)" }}
+                    className={`px-3 py-1 rounded-full font-medium ${categoryStyle[post.category].text}`}
+                    style={{ background: categoryStyle[post.category].bg }}
                   >
                     {post.category}
                   </span>
