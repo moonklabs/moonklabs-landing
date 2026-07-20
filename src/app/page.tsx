@@ -12,7 +12,7 @@ import EnterpriseSection from "@/components/EnterpriseSection";
 import FAQSection from "@/components/FAQSection";
 import InsightsSection from "@/components/InsightsSection";
 import LeadFormSection from "@/components/LeadFormSection";
-import { sortedPosts } from "@/content/posts";
+import { latestNews, sortedPosts } from "@/content/posts";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -67,7 +67,12 @@ export default function Home() {
       </a>
       <main id="main" className="min-h-screen" style={{ background: "#FAF9F6" }}>
         <Navigation />
-        <Hero />
+        <Hero
+          announcement={(() => {
+            const news = latestNews();
+            return news ? { label: news.title, href: `/blog/${news.slug}` } : undefined;
+          })()}
+        />
         <Marquee />
         <TrustBar />
         <AudienceSection />
@@ -75,7 +80,7 @@ export default function Home() {
         <JangsawangSection />
         <ProcessSection />
         <EnterpriseSection />
-        <InsightsSection posts={sortedPosts().slice(0, 3)} />
+        <InsightsSection posts={sortedPosts().filter((p) => p.category !== "소식").slice(0, 3)} />
         <FAQSection />
         <LeadFormSection />
         <Footer />

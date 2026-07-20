@@ -1,14 +1,104 @@
+export type PostCategory = "소식" | "도입 가이드" | "운영 사례" | "엔지니어링";
+
 export type Post = {
   slug: string;
   title: string;
   description: string;
-  category: "도입 가이드" | "운영 사례" | "엔지니어링";
+  category: PostCategory;
   date: string; // YYYY-MM-DD
   readingMinutes: number;
   content: string; // markdown-lite: ##, ###, -, >, **bold**, `code`
 };
 
 export const posts: Post[] = [
+  {
+    slug: "news-blog-open",
+    title: "뭉클랩 홈페이지 리뉴얼 & 블로그 오픈",
+    description:
+      "리드 상담 중심으로 홈페이지를 새 단장하고, 현장에서 검증한 에이전트 자동화 인사이트를 공유하는 블로그를 열었습니다.",
+    category: "소식",
+    date: "2026-07-21",
+    readingMinutes: 2,
+    content: `
+뭉클랩 홈페이지가 새로워졌습니다. 기업 담당자가 필요한 정보를 빠르게 찾고, 도입 상담까지 한 번에 이어질 수 있도록 구조를 다시 설계했습니다.
+
+## 무엇이 달라졌나
+
+- 타깃별 솔루션(개발 조직 · 커머스 운영 · 기업 맞춤) 안내를 명확히 분리했습니다
+- 진단 → 파일럿 → 구축 → 정착으로 이어지는 **도입 프로세스**를 공개했습니다
+- 권한 · 가드레일 · 감사 로그 등 **엔터프라이즈 통제 구조** 섹션을 추가했습니다
+- 도입 상담 폼을 열어 **1영업일 이내 회신** 체계를 갖췄습니다
+
+## 블로그를 시작합니다
+
+자사 제품 Sprintable과 Sellerking을 직접 운영하며 배운 것들을 도입 가이드, 운영 사례, 엔지니어링 노트로 정리해 공유합니다. 에이전트 자동화를 검토하는 팀에게 실질적인 참고가 되는 콘텐츠를 목표로 합니다.
+`,
+  },
+  {
+    slug: "news-sellerking-inventory-agent",
+    title: "Sellerking 재고 Agent 정식 오픈",
+    description:
+      "품절 · 과재고 · 회전율 저하를 미리 감지하는 재고 Agent가 정식 오픈했습니다. 광고 Agent와 함께 커머스 운영 자동화 라인업이 완성됐습니다.",
+    category: "소식",
+    date: "2026-04-20",
+    readingMinutes: 2,
+    content: `
+Sellerking 재고 Agent가 정식 오픈했습니다. 이제 광고 Agent와 함께 커머스 운영의 두 축 — 광고비와 재고 — 을 에이전트가 상시 감시합니다.
+
+## 재고 Agent가 하는 일
+
+- 판매 속도와 입고 리드타임을 추적해 **품절 예상 시점**을 미리 계산합니다
+- 회전율이 떨어진 상품의 **과재고 리스크**를 조기에 알립니다
+- 발주 시한이 다가오면 근거 데이터와 함께 담당자를 호출합니다
+
+발주 실행은 항상 담당자 승인 후에만 진행됩니다. 에이전트는 결정을 대신하지 않고, 결정에 필요한 재료를 먼저 준비합니다.
+
+도입 문의는 홈페이지 상담 폼으로 남겨주시면 1영업일 이내 회신드립니다.
+`,
+  },
+  {
+    slug: "news-sprintable-launch",
+    title: "Sprintable 정식 오픈 — 개발 조직을 위한 Agent Workflow System",
+    description:
+      "스프린트 계획 · 실행 · 검증 · 문서화를 역할별 AI Agent로 조율하는 Sprintable이 정식 오픈했습니다.",
+    category: "소식",
+    date: "2026-04-08",
+    readingMinutes: 2,
+    content: `
+뭉클랩 개발팀이 6개월간 직접 사용하며 다듬어온 Sprintable이 정식 오픈했습니다.
+
+## Sprintable은
+
+역할별 AI Agent를 생성 · 조율해 개발 조직의 반복 업무를 구조적으로 자동화하는 워크플로우 시스템입니다.
+
+- 계획 Agent — 백로그 정리, 티켓 초안, 우선순위 제안
+- 실행 Agent — 스펙 검토, 구현 초안, PR 생성 · 리뷰어 배정
+- 검증 Agent — 회귀 테스트, 평가 하네스, 릴리스 체크
+- 문서화 Agent — 회고 초안, 변경 로그, 온보딩 문서 갱신
+
+자세한 운영 경험은 블로그의 Sprintable 운영기에서 확인하실 수 있습니다. 도입 상담은 홈페이지 문의 폼으로 받고 있습니다.
+`,
+  },
+  {
+    slug: "news-sellerking-ad-agent",
+    title: "Sellerking 광고 Agent 오픈",
+    description:
+      "광고 성과와 비효율 신호를 빠르게 읽고 대응 포인트를 제안하는 이커머스 광고 Agent를 오픈했습니다.",
+    category: "소식",
+    date: "2026-03-16",
+    readingMinutes: 2,
+    content: `
+이커머스 운영자를 위한 Sellerking 광고 Agent를 오픈했습니다.
+
+## 광고 Agent가 하는 일
+
+- 새벽 시간대에 광고 성과를 점검하고 기준을 벗어난 캠페인만 골라 아침 보고에 올립니다
+- 전환율 급락 캠페인의 예산 재분배, 비효율 키워드 중지, 증액 기회를 **행동 제안** 형태로 전달합니다
+- 예산 변경은 항상 담당자 승인 후 실행됩니다
+
+대시보드를 하나 더 여는 것이 아니라, 판단 재료를 먼저 준비해두는 동료를 더하는 경험을 목표로 만들었습니다.
+`,
+  },
   {
     slug: "enterprise-ai-agent-guide",
     title: "기업 AI 에이전트 도입 가이드: 어디서부터 시작해야 할까",
@@ -218,8 +308,19 @@ Sellerking의 모든 실행 제안은 승인 대기 상태로 멈춥니다. 예�
   },
 ];
 
+export const categoryStyle: Record<PostCategory, { text: string; bg: string }> = {
+  소식: { text: "text-sky-700", bg: "rgba(2,132,199,0.08)" },
+  "도입 가이드": { text: "text-violet-700", bg: "rgba(124,58,237,0.07)" },
+  "운영 사례": { text: "text-amber-700", bg: "rgba(217,119,6,0.08)" },
+  엔지니어링: { text: "text-emerald-700", bg: "rgba(5,150,105,0.08)" },
+};
+
 export function getPost(slug: string): Post | undefined {
   return posts.find((p) => p.slug === slug);
+}
+
+export function latestNews(): Post | undefined {
+  return sortedPosts().find((p) => p.category === "소식");
 }
 
 export function sortedPosts(): Post[] {

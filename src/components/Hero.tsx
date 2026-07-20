@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const lineVariant = {
@@ -114,7 +115,11 @@ function LiveAgentCard() {
   );
 }
 
-export default function Hero() {
+export default function Hero({
+  announcement,
+}: {
+  announcement?: { label: string; href: string };
+}) {
   return (
     <section
       className="relative overflow-hidden min-h-screen flex items-center pt-28 pb-20 px-6"
@@ -156,13 +161,30 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span
-              className="inline-flex items-center gap-2 text-xs tracking-wide text-zinc-600 px-4 py-2 rounded-full bg-white"
-              style={{ border: "1px solid rgba(28,27,23,0.10)" }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-600 inline-block" />
-              기업을 위한 AI Agent 자동화 파트너
-            </span>
+            {announcement ? (
+              <Link
+                href={announcement.href}
+                className="group inline-flex items-center gap-2.5 text-xs text-zinc-600 pl-1.5 pr-4 py-1.5 rounded-full bg-white hover:-translate-y-0.5 transition-all"
+                style={{ border: "1px solid rgba(28,27,23,0.10)", boxShadow: "0 2px 10px rgba(28,27,23,0.04)" }}
+              >
+                <span
+                  className="px-2.5 py-1 rounded-full text-[10px] font-semibold text-sky-700"
+                  style={{ background: "rgba(2,132,199,0.09)" }}
+                >
+                  NEW
+                </span>
+                <span className="truncate max-w-[300px]">{announcement.label}</span>
+                <span className="text-zinc-400 group-hover:translate-x-0.5 transition-transform">→</span>
+              </Link>
+            ) : (
+              <span
+                className="inline-flex items-center gap-2 text-xs tracking-wide text-zinc-600 px-4 py-2 rounded-full bg-white"
+                style={{ border: "1px solid rgba(28,27,23,0.10)" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-violet-600 inline-block" />
+                기업을 위한 AI Agent 자동화 파트너
+              </span>
+            )}
           </motion.div>
 
           <h1 className="hero-title text-ink">

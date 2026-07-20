@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import MarkdownLite from "@/components/MarkdownLite";
-import { getPost, posts, sortedPosts } from "@/content/posts";
+import { categoryStyle, getPost, posts, sortedPosts } from "@/content/posts";
 import { siteName, siteUrl } from "@/app/site-config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -43,6 +43,7 @@ export default async function PostPage({ params }: Props) {
 
   const related = sortedPosts()
     .filter((p) => p.slug !== post.slug)
+    .sort((a, b) => (a.category === post.category ? -1 : 0) - (b.category === post.category ? -1 : 0))
     .slice(0, 2);
 
   const articleSchema = {
@@ -78,8 +79,8 @@ export default async function PostPage({ params }: Props) {
         <header className="mb-12 space-y-5">
           <div className="flex items-center gap-3 text-xs">
             <span
-              className="px-3 py-1 rounded-full font-medium text-violet-700"
-              style={{ background: "rgba(124,58,237,0.07)" }}
+              className={`px-3 py-1 rounded-full font-medium ${categoryStyle[post.category].text}`}
+              style={{ background: categoryStyle[post.category].bg }}
             >
               {post.category}
             </span>
