@@ -109,6 +109,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col" style={{ background: "#FAF9F6" }}>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* app router 루트 레이아웃은 전 페이지에 적용되므로 no-page-custom-font 규칙 오탐 */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap"
