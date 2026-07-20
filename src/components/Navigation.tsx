@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const links = [
@@ -32,28 +33,28 @@ export default function Navigation() {
         }}
       >
         <div className="flex items-center gap-7">
-          <a href="/" className="text-ink font-bold text-sm tracking-tight" style={{ color: "#1C1B17" }}>
+          <Link href="/" className="text-ink font-bold text-sm tracking-tight" style={{ color: "#1C1B17" }}>
             뭉클랩
-          </a>
+          </Link>
           <div className="hidden md:flex items-center gap-5">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="text-zinc-500 hover:text-black text-[13px] transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
-        <a
+        <Link
           href="/#contact"
           className="text-[13px] px-4 py-2 rounded-full text-white font-medium hover:opacity-85 transition-opacity"
           style={{ background: "#1C1B17" }}
         >
           도입 상담 →
-        </a>
+        </Link>
       </div>
     </nav>
   );

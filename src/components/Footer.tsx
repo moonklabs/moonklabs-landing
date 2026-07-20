@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="px-6 pt-16 pb-8" style={{ background: "#191714" }}>
@@ -19,18 +21,18 @@ export default function Footer() {
                 { label: "블로그", href: "/blog" },
                 { label: "FAQ", href: "/#faq" },
               ].map((link) => (
-                <a key={link.label} href={link.href} className="text-sm text-zinc-400 hover:text-white transition-colors">
+                <Link key={link.label} href={link.href} className="text-sm text-zinc-400 hover:text-white transition-colors">
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
           <div className="space-y-3">
             <span className="text-xs text-zinc-500 tracking-widest">문의</span>
             <div className="flex flex-col gap-2">
-              <a href="/#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">
+              <Link href="/#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">
                 도입 상담 신청
-              </a>
+              </Link>
               <a href="mailto:hello@moonklabs.com" className="text-sm text-zinc-400 hover:text-white transition-colors">
                 hello@moonklabs.com
               </a>
