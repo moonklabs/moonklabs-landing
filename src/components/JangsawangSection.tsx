@@ -11,125 +11,133 @@ export default function JangsawangSection() {
     <section
       id="work"
       ref={ref}
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: "#FAFAFA", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+      className="py-28 px-6"
+      style={{ borderBottom: "1px solid rgba(28,27,23,0.08)" }}
     >
-      {/* Background ghost text */}
-      <div
-        className="absolute left-0 top-1/2 -translate-y-1/2 select-none pointer-events-none font-black leading-none"
-        style={{
-          fontSize: "18rem",
-          color: "rgba(0,0,0,0.03)",
-          letterSpacing: "-0.04em",
-          whiteSpace: "nowrap",
-        }}
-      >
-        WORK
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left label */}
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="text-xs text-violet-600 tracking-widest font-medium">SELLERKING · COMMERCE OPERATIONS AGENTS</span>
-              <h2
-                className="mt-3 text-black font-black"
-                style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.04em", lineHeight: 0.95 }}
-              >
-                커머스 운영을
-                <br />자동화하는 에이전트
-              </h2>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.15, duration: 0.5 }}
-              className="text-zinc-600 text-sm leading-relaxed max-w-xl"
-            >
-              Sellerking은 광고와 재고 운영처럼 숫자를 놓치면 바로 손실로 이어지는 업무를 위해 만든 Agent
-              제품군입니다. 뭉클랩은 이커머스 현장에서 Agent가 실제 운영 신호를 어떻게 읽고 어떤 타이밍에
-              사람에게 판단을 넘겨야 하는지 직접 설계해왔습니다.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.25, duration: 0.5 }}
-            >
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-xs tracking-widest text-black border border-black/25 px-5 py-3 hover:bg-black hover:text-white transition-all duration-200"
-              >
-                자세히 이야기하기 →
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Right: agent mock */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        {/* Left: description */}
+        <div className="space-y-8">
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
-            <div
-              className="w-full"
-              style={{
-                background: "#0B0B0E",
-                border: "1px solid rgba(0,0,0,0.85)",
-                boxShadow: "0 24px 64px rgba(15,10,40,0.16)",
-              }}
+            <span
+              className="inline-block text-[11px] tracking-widest text-amber-700 font-medium px-3.5 py-1.5 rounded-full"
+              style={{ background: "rgba(217,119,6,0.08)" }}
             >
-              <div
-                className="flex items-center gap-2 px-4 py-3"
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
-              >
-                <div className="w-2 h-2 rounded-full bg-violet-500" />
-                <span className="text-white text-xs font-medium tracking-wide">COMMERCE AGENT</span>
-                <span className="ml-auto text-[10px] text-zinc-600 tracking-widest">LIVE</span>
-              </div>
-              <div className="p-5 space-y-4 text-xs font-mono">
-                <div className="space-y-2">
-                  <div className="text-zinc-500 text-[10px] tracking-widest">PIPELINE · 24H</div>
-                  <div className="flex justify-between">
-                    <span className="text-zinc-400">정산 데이터 동기화</span>
-                    <span className="text-green-400">SYNCED</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-zinc-400">이상 거래 스코어링</span>
-                    <span className="text-zinc-300">9,412 rows</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-zinc-400">광고 최적화 루프</span>
-                    <span className="text-violet-400">running</span>
-                  </div>
-                </div>
-                <div className="h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
-                <div
-                  className="p-3 space-y-1"
-                  style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)" }}
-                >
-                  <div className="text-violet-400 text-[10px] tracking-widest font-sans">◆ AGENT PLAN</div>
-                  <p className="text-zinc-300 leading-relaxed">캠페인 B 예산 재분배 제안 준비 완료.</p>
-                  <p className="text-zinc-500">승인 대기 · 휴먼 리뷰 1건</p>
-                </div>
-                <div className="space-y-1.5">
-                  <div className="text-zinc-600 text-[10px] tracking-widest">NEXT ACTIONS</div>
-                  {["정산 리포트 합성", "CS 인입 자동 분류", "SKU 품절 경보"].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-zinc-500">
-                      <div className="w-1 h-1 rounded-full bg-zinc-700" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+              SELLERKING · 커머스 운영용
+            </span>
+            <h2
+              className="font-display font-bold"
+              style={{ fontSize: "clamp(2.1rem, 4vw, 3.2rem)", letterSpacing: "-0.02em", lineHeight: 1.18, color: "#1C1B17" }}
+            >
+              커머스 운영을
+              <br />
+              지켜보는 에이전트
+            </h2>
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="text-zinc-600 text-[15px] leading-relaxed max-w-xl"
+          >
+            Sellerking은 광고와 재고 운영처럼 숫자를 놓치면 바로 손실로 이어지는 업무를 위해 만든
+            Agent 제품군입니다. 뭉클랩은 이커머스 현장에서 Agent가 실제 운영 신호를 어떻게 읽고 어떤
+            타이밍에 사람에게 판단을 넘겨야 하는지 직접 설계해왔습니다.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.25, duration: 0.5 }}
+          >
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 text-sm font-medium px-6 py-3 rounded-full bg-white hover:-translate-y-0.5 transition-all"
+              style={{ border: "1px solid rgba(28,27,23,0.14)", color: "#1C1B17" }}
+            >
+              자세히 이야기하기 →
+            </a>
           </motion.div>
         </div>
+
+        {/* Right: tinted panel with light agent card */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-3xl p-6 lg:p-10"
+          style={{ background: "rgba(217,119,6,0.06)" }}
+        >
+          <div
+            className="w-full rounded-2xl overflow-hidden bg-white"
+            style={{
+              border: "1px solid rgba(28,27,23,0.08)",
+              boxShadow: "0 24px 56px rgba(28,27,23,0.12)",
+            }}
+          >
+            <div
+              className="flex items-center gap-2.5 px-5 py-4"
+              style={{ borderBottom: "1px solid rgba(28,27,23,0.06)" }}
+            >
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-50 animate-ping" />
+                <span className="relative inline-flex w-2 h-2 rounded-full bg-amber-500" />
+              </span>
+              <span className="text-sm font-semibold" style={{ color: "#1C1B17" }}>
+                커머스 에이전트 · 오늘 하루
+              </span>
+              <span className="ml-auto text-[11px] text-zinc-400">24시간 감시 중</span>
+            </div>
+            <div className="p-5 space-y-4 text-[13px]">
+              <div className="space-y-2.5">
+                <div className="text-[11px] text-zinc-400 tracking-wide">지금까지 확인한 것</div>
+                {[
+                  { task: "쇼핑몰 정산 데이터 정리", state: "완료", tone: "text-green-600 bg-green-50" },
+                  { task: "광고 성과 9,412건 점검", state: "완료", tone: "text-green-600 bg-green-50" },
+                  { task: "광고 예산 최적화", state: "진행 중", tone: "text-amber-700 bg-amber-50" },
+                ].map((item) => (
+                  <div key={item.task} className="flex items-center justify-between gap-3">
+                    <span className="text-zinc-700">{item.task}</span>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-medium ${item.tone}`}>
+                      {item.state}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="h-px" style={{ background: "rgba(28,27,23,0.06)" }} />
+
+              <div
+                className="rounded-xl p-4 space-y-2"
+                style={{ background: "rgba(217,119,6,0.06)", border: "1px solid rgba(217,119,6,0.18)" }}
+              >
+                <div className="text-amber-700 text-[11px] font-medium tracking-wide">
+                  에이전트의 발견 · 확인이 필요해요
+                </div>
+                <p className="text-zinc-700 leading-relaxed">
+                  다음 주 <strong style={{ color: "#1C1B17" }}>품절 예상 상품 2건</strong>을 발견했습니다.
+                  지금 발주하면 품절 없이 넘어갈 수 있어요.
+                </p>
+                <div className="flex gap-2 pt-0.5">
+                  <span className="px-3 py-1.5 rounded-full text-white text-[11px] font-medium" style={{ background: "#B45309" }}>
+                    발주 검토하기
+                  </span>
+                  <span
+                    className="px-3 py-1.5 rounded-full text-zinc-500 text-[11px]"
+                    style={{ border: "1px solid rgba(28,27,23,0.12)" }}
+                  >
+                    나중에
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-zinc-400">품절 · 과재고 · 광고 비효율을 사람보다 먼저 발견합니다</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

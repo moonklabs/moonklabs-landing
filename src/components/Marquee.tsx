@@ -18,16 +18,17 @@ export default function Marquee() {
 
   return (
     <div
-      className="py-4 overflow-hidden"
-      style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+      className="py-5 overflow-hidden"
+      style={{ borderBottom: "1px solid rgba(28,27,23,0.08)" }}
+      aria-label="뭉클랩 기술 스택"
     >
       <div className="marquee-inner">
         {repeated.map((item, i) => (
           <div key={i} className="flex items-center shrink-0">
-            <span className="text-black text-sm font-medium tracking-wide whitespace-nowrap px-6">
+            <span className="text-zinc-400 text-sm font-medium tracking-wide whitespace-nowrap px-7">
               {item}
             </span>
-            <span className="text-zinc-300 text-sm">·</span>
+            <span className="text-zinc-300 text-xs">◆</span>
           </div>
         ))}
       </div>

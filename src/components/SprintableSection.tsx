@@ -35,7 +35,7 @@ const typeColors: Record<string, string> = {
   blank: "transparent",
   code: "#e2e8f0",
   string: "#86efac",
-  output: "#7c3aed",
+  output: "#a78bfa",
 };
 
 export default function SprintableSection() {
@@ -46,45 +46,47 @@ export default function SprintableSection() {
     <section
       id="products"
       ref={ref}
-      className="py-32 px-6"
-      style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+      className="py-28 px-6"
+      style={{ borderBottom: "1px solid rgba(28,27,23,0.08)" }}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Left: Code editor */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        {/* Left: tinted panel with code editor */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="order-2 lg:order-1"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="order-2 lg:order-1 rounded-3xl p-6 lg:p-10"
+          style={{ background: "rgba(124,58,237,0.06)" }}
         >
           <div
-            className="font-mono text-xs"
+            className="font-mono text-xs rounded-2xl overflow-hidden"
             style={{
-              background: "#0B0B0E",
-              border: "1px solid rgba(0,0,0,0.85)",
-              boxShadow: "0 24px 64px rgba(15,10,40,0.16)",
+              background: "#141317",
+              boxShadow: "0 24px 56px rgba(28,27,23,0.18)",
             }}
           >
             {/* Editor header */}
             <div
               className="flex items-center gap-2 px-4 py-3"
-              style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
             >
               <div className="flex gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
               </div>
-              <span className="ml-2 text-zinc-600 text-[10px] tracking-wide">engineering_agent.ts</span>
+              <span className="ml-2 text-zinc-500 text-[10px] tracking-wide">engineering_agent.ts</span>
             </div>
 
             {/* Code */}
             <div className="p-5 space-y-0.5">
               {codeLines.map((line, i) => (
                 <div key={i} className="flex">
-                  <span className="w-6 text-zinc-700 text-[10px] select-none shrink-0 pt-0.5">{line.type !== "blank" ? i + 1 : ""}</span>
+                  <span className="w-6 text-zinc-600 text-[10px] select-none shrink-0 pt-0.5">
+                    {line.type !== "blank" ? i + 1 : ""}
+                  </span>
                   <span style={{ color: typeColors[line.type] }} className="leading-relaxed">
-                    {line.text || "\u00A0"}
+                    {line.text || " "}
                   </span>
                 </div>
               ))}
@@ -98,16 +100,21 @@ export default function SprintableSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs text-violet-600 tracking-widest font-medium">SPRINTABLE · AGENT WORKFLOW SYSTEM</span>
-            </div>
+            <span
+              className="inline-block text-[11px] tracking-widest text-violet-700 font-medium px-3.5 py-1.5 rounded-full"
+              style={{ background: "rgba(124,58,237,0.07)" }}
+            >
+              SPRINTABLE · 개발 조직용
+            </span>
             <h2
-              className="text-black font-black"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.04em", lineHeight: 0.95 }}
+              className="font-display font-bold"
+              style={{ fontSize: "clamp(2.1rem, 4vw, 3.2rem)", letterSpacing: "-0.02em", lineHeight: 1.18, color: "#1C1B17" }}
             >
               엔지니어링 팀을
-              <br />증폭시키는 에이전트
+              <br />
+              증폭시키는 에이전트
             </h2>
           </motion.div>
 
@@ -115,7 +122,7 @@ export default function SprintableSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.15, duration: 0.5 }}
-            className="text-zinc-600 text-sm leading-relaxed"
+            className="text-zinc-600 text-[15px] leading-relaxed"
           >
             Sprintable은 역할별 AI Agent를 생성·조율해 스프린트 계획, 실행, 검증, 문서화 같은 개발
             조직의 반복 업무를 구조적으로 자동화하는 시스템입니다. 개발팀 내부 사용 경험을 바탕으로
@@ -126,11 +133,13 @@ export default function SprintableSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="space-y-2"
+            className="space-y-2.5"
           >
             {features.map((feature, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm text-zinc-600">
-                <div className="w-1 h-1 rounded-full bg-violet-600 shrink-0" />
+              <div key={i} className="flex items-start gap-3 text-sm text-zinc-600">
+                <span className="mt-0.5 flex w-4 h-4 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-700 text-[9px]">
+                  ✓
+                </span>
                 {feature}
               </div>
             ))}
@@ -143,7 +152,8 @@ export default function SprintableSection() {
           >
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 text-xs tracking-widest text-black border border-black/25 px-5 py-3 hover:bg-black hover:text-white transition-all duration-200"
+              className="inline-flex items-center gap-2 text-sm font-medium px-6 py-3 rounded-full bg-white hover:-translate-y-0.5 transition-all"
+              style={{ border: "1px solid rgba(28,27,23,0.14)", color: "#1C1B17" }}
             >
               자세히 이야기하기 →
             </a>

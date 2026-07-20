@@ -1,20 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
+  --background: #FAF9F6;
+  --foreground: #1C1B17;
   --accent: #7C3AED;
+  --ink: #1C1B17;
+  --paper: #FAF9F6;
+  --border-soft: rgba(28, 27, 23, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: "Noto Serif KR", serif;
 }
 
 html { scroll-behavior: smooth; }
-[id] { scroll-margin-top: 80px; }
+[id] { scroll-margin-top: 96px; }
 
 body {
   background: var(--background);
@@ -23,17 +29,27 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: rgba(124, 58, 237, 0.18);
+}
+
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-inner { animation: none; }
 }
 
+/* Editorial serif display */
+.font-display {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", Georgia, serif;
+}
+
 .hero-title {
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
+  font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", Georgia, serif;
+  font-size: clamp(2.75rem, 6.2vw, 5.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
 }
 
 @keyframes marquee {
@@ -43,6 +59,20 @@ body {
 
 .marquee-inner {
   display: flex;
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear infinite;
   width: max-content;
+}
+
+/* Soft floating animation for hero card */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-soft { animation: none; }
 }

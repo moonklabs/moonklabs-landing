@@ -30,29 +30,38 @@ export default function TrustBar() {
     <section
       ref={ref}
       aria-label="뭉클랩 운영 지표"
-      className="py-14 px-6"
-      style={{ background: "#FAFAFA", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+      className="py-20 px-6"
+      style={{ borderBottom: "1px solid rgba(28,27,23,0.08)" }}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
-        {trustMetrics.map((metric, i) => (
-          <motion.div
-            key={metric.label}
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: i * 0.08, duration: 0.5 }}
-            className="space-y-2"
-            style={{ borderLeft: "2px solid rgba(124,58,237,0.45)", paddingLeft: "1.25rem" }}
-          >
-            <div
-              className="text-black font-black"
-              style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)", letterSpacing: "-0.03em", lineHeight: 1 }}
+      <div className="max-w-7xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-center text-xs text-zinc-400 tracking-widest mb-12"
+        >
+          자사 제품을 직접 운영하며 검증한 숫자입니다
+        </motion.p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          {trustMetrics.map((metric, i) => (
+            <motion.div
+              key={metric.label}
+              initial={{ opacity: 0, y: 18 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.09, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center space-y-2"
             >
-              <CountUp value={metric.value} suffix={metric.suffix} start={inView} />
-            </div>
-            <div className="text-sm text-zinc-700 font-medium">{metric.label}</div>
-            <div className="text-xs text-zinc-500">{metric.note}</div>
-          </motion.div>
-        ))}
+              <div
+                className="font-display text-ink font-bold"
+                style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)", letterSpacing: "-0.02em", lineHeight: 1, color: "#1C1B17" }}
+              >
+                <CountUp value={metric.value} suffix={metric.suffix} start={inView} />
+              </div>
+              <div className="text-sm text-zinc-700 font-medium">{metric.label}</div>
+              <div className="text-xs text-zinc-400">{metric.note}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

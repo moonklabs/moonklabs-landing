@@ -3,41 +3,43 @@
 import { useEffect, useState } from "react";
 
 const links = [
-  { label: "SOLUTIONS", href: "#solutions" },
-  { label: "PRODUCTS", href: "#products" },
-  { label: "PROCESS", href: "#process" },
+  { label: "솔루션", href: "#solutions" },
+  { label: "제품", href: "#products" },
+  { label: "도입 프로세스", href: "#process" },
   { label: "FAQ", href: "#faq" },
-  { label: "GITHUB", href: "https://github.com/moonklabs", external: true },
 ];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => setScrolled(window.scrollY > 16);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        background: scrolled ? "rgba(255,255,255,0.85)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "none",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <span className="text-black font-bold text-sm tracking-widest">뭉클랩</span>
-          <div className="hidden md:flex items-center gap-6">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+      <div
+        className="max-w-5xl mx-auto flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-300"
+        style={{
+          background: scrolled ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.55)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+          border: "1px solid rgba(28,27,23,0.08)",
+          boxShadow: scrolled ? "0 8px 30px rgba(28,27,23,0.08)" : "none",
+        }}
+      >
+        <div className="flex items-center gap-7">
+          <a href="#main" className="text-ink font-bold text-sm tracking-tight" style={{ color: "#1C1B17" }}>
+            뭉클랩
+          </a>
+          <div className="hidden md:flex items-center gap-5">
             {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="text-zinc-500 hover:text-black text-xs tracking-widest transition-colors"
+                className="text-zinc-500 hover:text-black text-[13px] transition-colors"
               >
                 {link.label}
               </a>
@@ -46,7 +48,8 @@ export default function Navigation() {
         </div>
         <a
           href="#contact"
-          className="text-xs tracking-widest px-4 py-2 bg-black text-white hover:bg-zinc-800 transition-all duration-200 font-medium"
+          className="text-[13px] px-4 py-2 rounded-full text-white font-medium hover:opacity-85 transition-opacity"
+          style={{ background: "#1C1B17" }}
         >
           도입 상담 →
         </a>
