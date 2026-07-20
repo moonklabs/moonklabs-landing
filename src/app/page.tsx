@@ -10,7 +10,9 @@ import SprintableSection from "@/components/SprintableSection";
 import ProcessSection from "@/components/ProcessSection";
 import EnterpriseSection from "@/components/EnterpriseSection";
 import FAQSection from "@/components/FAQSection";
+import InsightsSection from "@/components/InsightsSection";
 import LeadFormSection from "@/components/LeadFormSection";
+import { sortedPosts } from "@/content/posts";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -73,6 +75,7 @@ export default function Home() {
         <JangsawangSection />
         <ProcessSection />
         <EnterpriseSection />
+        <InsightsSection posts={sortedPosts().slice(0, 3)} />
         <FAQSection />
         <LeadFormSection />
         <Footer />

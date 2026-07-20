@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 
 const links = [
-  { label: "솔루션", href: "#solutions" },
-  { label: "제품", href: "#products" },
-  { label: "도입 프로세스", href: "#process" },
-  { label: "FAQ", href: "#faq" },
+  { label: "솔루션", href: "/#solutions" },
+  { label: "제품", href: "/#products" },
+  { label: "도입 프로세스", href: "/#process" },
+  { label: "블로그", href: "/blog" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export default function Navigation() {
@@ -31,7 +32,7 @@ export default function Navigation() {
         }}
       >
         <div className="flex items-center gap-7">
-          <a href="#main" className="text-ink font-bold text-sm tracking-tight" style={{ color: "#1C1B17" }}>
+          <a href="/" className="text-ink font-bold text-sm tracking-tight" style={{ color: "#1C1B17" }}>
             뭉클랩
           </a>
           <div className="hidden md:flex items-center gap-5">
@@ -47,7 +48,7 @@ export default function Navigation() {
           </div>
         </div>
         <a
-          href="#contact"
+          href="/#contact"
           className="text-[13px] px-4 py-2 rounded-full text-white font-medium hover:opacity-85 transition-opacity"
           style={{ background: "#1C1B17" }}
         >

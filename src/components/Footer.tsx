@@ -13,10 +13,11 @@ export default function Footer() {
             <span className="text-xs text-zinc-500 tracking-widest">바로가기</span>
             <div className="flex flex-col gap-2">
               {[
-                { label: "솔루션", href: "#solutions" },
-                { label: "제품", href: "#products" },
-                { label: "도입 프로세스", href: "#process" },
-                { label: "FAQ", href: "#faq" },
+                { label: "솔루션", href: "/#solutions" },
+                { label: "제품", href: "/#products" },
+                { label: "도입 프로세스", href: "/#process" },
+                { label: "블로그", href: "/blog" },
+                { label: "FAQ", href: "/#faq" },
               ].map((link) => (
                 <a key={link.label} href={link.href} className="text-sm text-zinc-400 hover:text-white transition-colors">
                   {link.label}
@@ -27,7 +28,7 @@ export default function Footer() {
           <div className="space-y-3">
             <span className="text-xs text-zinc-500 tracking-widest">문의</span>
             <div className="flex flex-col gap-2">
-              <a href="#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">
+              <a href="/#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">
                 도입 상담 신청
               </a>
               <a href="mailto:hello@moonklabs.com" className="text-sm text-zinc-400 hover:text-white transition-colors">
