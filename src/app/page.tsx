@@ -80,7 +80,11 @@ export default function Home() {
         <JangsawangSection />
         <ProcessSection />
         <EnterpriseSection />
-        <InsightsSection posts={sortedPosts().slice(0, 3)} />
+        <InsightsSection
+          posts={(["소식", "운영 사례", "도입 가이드", "엔지니어링"] as const)
+            .map((category) => sortedPosts().find((p) => p.category === category))
+            .filter((p): p is NonNullable<typeof p> => Boolean(p))}
+        />
         <FAQSection />
         <LeadFormSection />
         <Footer />

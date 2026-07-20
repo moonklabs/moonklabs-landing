@@ -61,7 +61,7 @@ export default function InsightsSection({ posts }: { posts: Post[] }) {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {posts.map((post, i) => (
             <motion.div
               key={post.slug}
@@ -71,7 +71,7 @@ export default function InsightsSection({ posts }: { posts: Post[] }) {
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col gap-4 h-full rounded-2xl bg-white p-6 pb-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_48px_rgba(28,27,23,0.10)]"
+                className="group flex flex-col gap-3.5 h-full rounded-2xl bg-white p-5 pb-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_48px_rgba(28,27,23,0.10)]"
                 style={{ border: "1px solid rgba(28,27,23,0.08)", boxShadow: "0 2px 10px rgba(28,27,23,0.03)" }}
               >
                 <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
@@ -93,12 +93,12 @@ export default function InsightsSection({ posts }: { posts: Post[] }) {
                   <span className="text-zinc-400">{formatDate(post.date)}</span>
                 </div>
                 <h3
-                  className="font-display text-lg font-bold leading-snug group-hover:text-violet-800 transition-colors"
+                  className="font-display text-[17px] font-bold leading-snug group-hover:text-violet-800 transition-colors"
                   style={{ letterSpacing: "-0.01em", color: "#1C1B17" }}
                 >
                   {post.title}
                 </h3>
-                <p className="text-sm text-zinc-500 leading-relaxed flex-1">{post.description}</p>
+                <p className="text-[13px] text-zinc-500 leading-relaxed flex-1">{post.description}</p>
                 <span className="text-xs text-zinc-400">{post.readingMinutes}분 읽기</span>
               </Link>
             </motion.div>
