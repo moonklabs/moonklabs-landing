@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { categoryStyle, type Post, type PostCategory } from "@/content/posts";
+import { categoryStyle, postImage, type Post, type PostCategory } from "@/content/posts";
 
 const TABS: Array<"전체" | PostCategory> = ["전체", "소식", "도입 가이드", "운영 사례", "엔지니어링"];
 
@@ -51,10 +52,10 @@ export default function BlogList({ posts }: { posts: Post[] }) {
           {featured && (
             <Link
               href={`/blog/${featured.slug}`}
-              className="group block rounded-3xl bg-white p-8 lg:p-12 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(28,27,23,0.10)]"
+              className="group grid grid-cols-1 lg:grid-cols-2 gap-8 items-center rounded-3xl bg-white p-8 lg:p-12 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(28,27,23,0.10)]"
               style={{ border: "1px solid rgba(28,27,23,0.08)", boxShadow: "0 2px 10px rgba(28,27,23,0.03)" }}
             >
-              <div className="max-w-3xl space-y-4">
+              <div className="space-y-4">
                 <div className="flex items-center gap-3 text-xs">
                   <span
                     className={`px-3 py-1 rounded-full font-medium ${categoryStyle[featured.category].text}`}
@@ -75,6 +76,15 @@ export default function BlogList({ posts }: { posts: Post[] }) {
                 <p className="text-zinc-500 text-[15px] leading-relaxed">{featured.description}</p>
                 <span className="inline-block text-sm font-medium text-violet-700 pt-1">읽어보기 →</span>
               </div>
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden order-first lg:order-last">
+                <Image
+                  src={postImage(featured)}
+                  alt=""
+                  fill
+                  unoptimized
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
             </Link>
           )}
 
@@ -85,9 +95,18 @@ export default function BlogList({ posts }: { posts: Post[] }) {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group flex flex-col gap-4 rounded-2xl bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(28,27,23,0.10)]"
+                  className="group flex flex-col gap-4 rounded-2xl bg-white p-6 pb-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(28,27,23,0.10)]"
                   style={{ border: "1px solid rgba(28,27,23,0.08)", boxShadow: "0 2px 10px rgba(28,27,23,0.03)" }}
                 >
+                  <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
+                    <Image
+                      src={postImage(post)}
+                      alt=""
+                      fill
+                      unoptimized
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
                   <div className="flex items-center gap-3 text-xs">
                     <span
                       className={`px-3 py-1 rounded-full font-medium ${categoryStyle[post.category].text}`}

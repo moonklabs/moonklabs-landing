@@ -7,8 +7,13 @@ export type Post = {
   category: PostCategory;
   date: string; // YYYY-MM-DD
   readingMinutes: number;
+  image?: string; // 미지정 시 /blog/{slug}.svg 더미 이미지 사용
   content: string; // markdown-lite: ##, ###, -, >, **bold**, `code`
 };
+
+export function postImage(post: Post): string {
+  return post.image ?? `/blog/${post.slug}.svg`;
+}
 
 export const posts: Post[] = [
   {

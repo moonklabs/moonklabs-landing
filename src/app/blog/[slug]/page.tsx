@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import MarkdownLite from "@/components/MarkdownLite";
-import { categoryStyle, getPost, posts, sortedPosts } from "@/content/posts";
+import { categoryStyle, getPost, postImage, posts, sortedPosts } from "@/content/posts";
 import { siteName, siteUrl } from "@/app/site-config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -97,7 +98,9 @@ export default async function PostPage({ params }: Props) {
           <p className="text-zinc-500 text-base leading-relaxed">{post.description}</p>
         </header>
 
-        <div className="h-px mb-12" style={{ background: "rgba(28,27,23,0.08)" }} />
+        <div className="relative aspect-[16/8] rounded-3xl overflow-hidden mb-12">
+          <Image src={postImage(post)} alt="" fill unoptimized className="object-cover" priority />
+        </div>
 
         {/* Body */}
         <MarkdownLite content={post.content} />

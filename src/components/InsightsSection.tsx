@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { categoryStyle, type Post } from "@/content/posts";
+import { categoryStyle, postImage, type Post } from "@/content/posts";
 
 function formatDate(date: string) {
   const [y, m, d] = date.split("-");
@@ -70,9 +71,18 @@ export default function InsightsSection({ posts }: { posts: Post[] }) {
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col gap-4 h-full rounded-2xl bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_48px_rgba(28,27,23,0.10)]"
+                className="group flex flex-col gap-4 h-full rounded-2xl bg-white p-6 pb-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_48px_rgba(28,27,23,0.10)]"
                 style={{ border: "1px solid rgba(28,27,23,0.08)", boxShadow: "0 2px 10px rgba(28,27,23,0.03)" }}
               >
+                <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
+                  <Image
+                    src={postImage(post)}
+                    alt=""
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
                 <div className="flex items-center gap-2.5 text-xs">
                   <span
                     className={`px-3 py-1 rounded-full font-medium ${categoryStyle[post.category].text}`}
