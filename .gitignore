@@ -45,3 +45,4 @@ next-env.d.ts
 
 # oh-my-codex runtime state
 .omx/
+!.env.example
