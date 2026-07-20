@@ -3,10 +3,14 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
 import Marquee from "@/components/Marquee";
+import TrustBar from "@/components/TrustBar";
+import AudienceSection from "@/components/AudienceSection";
 import JangsawangSection from "@/components/JangsawangSection";
 import SprintableSection from "@/components/SprintableSection";
+import ProcessSection from "@/components/ProcessSection";
+import EnterpriseSection from "@/components/EnterpriseSection";
 import FAQSection from "@/components/FAQSection";
-import CTASection from "@/components/CTASection";
+import LeadFormSection from "@/components/LeadFormSection";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -63,10 +67,14 @@ export default function Home() {
         <Navigation />
         <Hero />
         <Marquee />
+        <TrustBar />
+        <AudienceSection />
         <SprintableSection />
         <JangsawangSection />
+        <ProcessSection />
+        <EnterpriseSection />
         <FAQSection />
-        <CTASection />
+        <LeadFormSection />
         <Footer />
       </main>
     </>

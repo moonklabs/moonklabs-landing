@@ -3,6 +3,7 @@ import { faqItems, lastUpdated } from "@/app/site-config";
 export default function FAQSection() {
   return (
     <section
+      id="faq"
       aria-labelledby="faq-heading"
       className="py-32 px-6"
       style={{ background: "#050505", borderBottom: "1px solid rgba(255,255,255,0.08)" }}

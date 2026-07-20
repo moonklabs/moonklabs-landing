@@ -2,6 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+const links = [
+  { label: "SOLUTIONS", href: "#solutions" },
+  { label: "PRODUCTS", href: "#products" },
+  { label: "PROCESS", href: "#process" },
+  { label: "FAQ", href: "#faq" },
+  { label: "GITHUB", href: "https://github.com/moonklabs", external: true },
+];
+
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -24,30 +32,23 @@ export default function Navigation() {
         <div className="flex items-center gap-8">
           <span className="text-white font-semibold text-sm tracking-widest">뭉클랩</span>
           <div className="hidden md:flex items-center gap-6">
-            <a href="#work" className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors">
-              WORK
-            </a>
-            <a href="#tech" className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors">
-              TECH
-            </a>
-            <a href="#contact" className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors">
-              ABOUT
-            </a>
-            <a
-              href="https://github.com/moonklabs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors"
-            >
-              GITHUB
-            </a>
+            {links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
         <a
           href="#contact"
-          className="text-xs tracking-widest px-4 py-2 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-200"
+          className="text-xs tracking-widest px-4 py-2 bg-white text-black hover:bg-zinc-200 transition-all duration-200 font-medium"
         >
-          문의하기 →
+          도입 상담 →
         </a>
       </div>
     </nav>

@@ -44,7 +44,7 @@ export default function SprintableSection() {
 
   return (
     <section
-      id="tech"
+      id="products"
       ref={ref}
       className="py-32 px-6"
       style={{ background: "#0D0D0D", borderBottom: "1px solid rgba(255,255,255,0.08)" }}

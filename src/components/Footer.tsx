@@ -7,8 +7,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-6">
           {[
-            { label: "WORK", href: "#work" },
-            { label: "TECH", href: "#tech" },
+            { label: "SOLUTIONS", href: "#solutions" },
+            { label: "PRODUCTS", href: "#products" },
+            { label: "PROCESS", href: "#process" },
             { label: "CONTACT", href: "#contact" },
             { label: "GITHUB", href: "https://github.com/moonklabs" },
             { label: "MAIL", href: "mailto:hello@moonklabs.com" },

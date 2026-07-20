@@ -113,17 +113,18 @@ export default function Hero() {
                 href="#contact"
                 className="px-6 py-3 text-sm font-medium tracking-wide text-black bg-white hover:bg-zinc-100 transition-colors"
               >
-                문의하기
+                도입 상담 신청 →
               </a>
               <a
-                href="https://github.com/moonklabs"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 text-sm font-medium tracking-wide text-white border border-white/20 hover:border-white/50 transition-colors flex items-center gap-2"
+                href="#process"
+                className="px-6 py-3 text-sm font-medium tracking-wide text-white border border-white/20 hover:border-white/50 transition-colors"
               >
-                <span>★</span> GITHUB
+                도입 프로세스 보기
               </a>
             </div>
+            <p className="text-xs text-zinc-500 tracking-wide">
+              첫 상담 · 진단 워크숍 무료 &nbsp;·&nbsp; 보통 1영업일 이내 회신
+            </p>
           </motion.div>
         </div>
 
