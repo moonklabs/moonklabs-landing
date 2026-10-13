@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -113,26 +113,66 @@ function AgentWorkspace() {
   );
 }
 
+const CARD_GAP = 28;
+const INNER_START_SCALE = 0.86;
+
 export default function Hero() {
   const trackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start start", "end end"] });
 
   // 0 → 0.6 구간에서 카드가 화면 전체로 확장되고, 헤드라인은 위로 빠지며 사라진다.
   const expand = useTransform(scrollYProgress, (v) => Math.min(v / 0.6, 1));
-  const clipPath = useTransform(expand, (t) => {
+
+  // 카드의 시작 위치는 헤드라인 블록(버튼 포함) 바로 아래로 잡는다.
+  // 화면이 작아 헤드라인이 길어져도 카드가 버튼을 덮지 않도록 실제 높이를 잰다.
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const cardTop = useMotionValue(-1);
+  const contentShift = useMotionValue(0);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const sticky = stickyRef.current;
+      const title = titleRef.current;
+      const content = contentRef.current;
+      if (!sticky || !title || !content) return;
+      const viewport = sticky.clientHeight;
+      const top = Math.min(title.offsetTop + title.offsetHeight + CARD_GAP, viewport - 24);
+      cardTop.set(top);
+      contentShift.set(top - content.offsetTop * INNER_START_SCALE);
+    };
+    measure();
+    // 마운트 직후에는 motion 요소가 아직 값을 구독하지 않았을 수 있어, 다음 프레임에 한 번 더 알린다.
+    const frame = requestAnimationFrame(() => {
+      cardTop.set(-1);
+      contentShift.set(0);
+      measure();
+    });
+    const observer = new ResizeObserver(measure);
+    if (stickyRef.current) observer.observe(stickyRef.current);
+    if (titleRef.current) observer.observe(titleRef.current);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [cardTop, contentShift]);
+
+  const clipPath = useTransform([expand, cardTop], ([t, top]: number[]) => {
     const k = 1 - t;
-    return `inset(${58 * k}% ${6 * k}% ${-2 * k}% ${6 * k}% round ${40 * k}px)`;
+    const topInset = top < 0 ? `${58 * k}%` : `${top * k}px`;
+    return `inset(${topInset} ${6 * k}% ${-2 * k}% ${6 * k}% round ${40 * k}px)`;
   });
   const titleY = useTransform(scrollYProgress, [0, 0.4], [0, -160]);
   const titleOpacity = useTransform(scrollYProgress, (v) => 1 - Math.min(v / 0.3, 1));
-  const innerScale = useTransform(scrollYProgress, [0, 0.6], [0.86, 1]);
-  const innerY = useTransform(scrollYProgress, [0, 0.6], ["34%", "0%"]);
+  const innerScale = useTransform(expand, (t) => INNER_START_SCALE + (1 - INNER_START_SCALE) * t);
+  const innerY = useTransform([expand, contentShift], ([t, shift]: number[]) => shift * (1 - t));
   const innerOpacity = useTransform(expand, (t) => 0.6 + 0.4 * t);
   const glowY = useTransform(scrollYProgress, [0, 1], ["-10%", "20%"]);
 
   return (
     <section id="top" ref={trackRef} className="relative bg-white h-[260vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div ref={stickyRef} className="sticky top-0 h-screen overflow-hidden">
         <motion.div style={{ clipPath }} className="absolute inset-0 bg-[#0B0B0F]">
           <motion.div aria-hidden style={{ y: glowY }} className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 grid-bg opacity-60" />
@@ -142,16 +182,19 @@ export default function Hero() {
             />
           </motion.div>
           <motion.div
-            style={{ scale: innerScale, y: innerY, opacity: innerOpacity }}
-            className="relative h-full max-w-6xl mx-auto flex items-center pt-16"
+            style={{ scale: innerScale, y: innerY, opacity: innerOpacity, transformOrigin: "50% 0%" }}
+            className="relative h-full max-w-6xl mx-auto flex items-start lg:items-center pt-16"
           >
-            <AgentWorkspace />
+            <div ref={contentRef} className="w-full">
+              <AgentWorkspace />
+            </div>
           </motion.div>
         </motion.div>
 
         <motion.div
+          ref={titleRef}
           style={{ y: titleY, opacity: titleOpacity }}
-          className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-28 sm:pt-32"
+          className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20 sm:pt-32"
         >
           <motion.span
             initial={{ opacity: 0, y: 12 }}
@@ -177,22 +220,22 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-5 text-lg sm:text-xl text-zinc-500 leading-relaxed"
+            className="mt-4 sm:mt-5 text-base sm:text-xl text-zinc-500 leading-relaxed"
           >
             셀러는 결정하고, 에이전트는 실행합니다.
-            <br className="hidden sm:block" /> 정산부터 마진, 광고, 재고까지 장사왕과 Sprintable이 맡습니다.
+            <br /> 정산부터 마진, 광고, 재고까지 장사왕과 Sprintable이 맡습니다.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.6 }}
-            className="mt-8 flex flex-wrap justify-center gap-3"
+            className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2.5 sm:gap-3"
           >
-            <a href="#contact" className="px-7 py-3.5 rounded-full text-[15px] font-semibold text-white bg-black hover:bg-zinc-800 transition-colors">
+            <a href="#contact" className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full text-[15px] font-semibold text-white bg-black hover:bg-zinc-800 transition-colors">
               도입 상담하기
             </a>
-            <a href="#products" className="px-7 py-3.5 rounded-full text-[15px] font-semibold text-black bg-zinc-100 hover:bg-zinc-200 transition-colors">
+            <a href="#products" className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full text-[15px] font-semibold text-black bg-zinc-100 hover:bg-zinc-200 transition-colors">
               제품 살펴보기
             </a>
           </motion.div>
