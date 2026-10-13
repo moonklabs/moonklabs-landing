@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import {
   contactEmail,
@@ -8,12 +8,8 @@ import {
   siteTitle,
   siteUrl,
 } from "@/app/site-config";
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -30,7 +26,7 @@ const organizationSchema = {
   url: siteUrl,
   logo: `${siteUrl}/favicon.ico`,
   email: contactEmail,
-  sameAs: ["https://github.com/moonklabs"],
+  sameAs: ["https://github.com/moonklabs", "https://sellerking.io", "https://sprintable.ai"],
   description: siteDescription,
 };
 
@@ -56,12 +52,16 @@ export const metadata: Metadata = {
   creator: siteName,
   publisher: siteName,
   keywords: [
-    "AI 에이전트 개발",
-    "기업용 AI 에이전트",
-    "LLM 시스템 구축",
-    "MCP 내부 툴링",
-    "엔터프라이즈 AI",
-    "AI engineering studio",
+    "에이전트 커머스",
+    "Agent Commerce",
+    "커머스 AI 에이전트",
+    "셀러킹",
+    "장사왕",
+    "Sellerking",
+    "Sprintable",
+    "스프린터블",
+    "이커머스 순이익 자동화",
+    "멀티채널 정산 관리",
     "뭉클랩",
     "Moonklabs",
   ],
@@ -92,8 +92,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#000000",
-  colorScheme: "dark" as const,
+  themeColor: "#ffffff",
+  colorScheme: "light" as const,
 };
 
 export default function RootLayout({
@@ -104,9 +104,9 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-black">
+      <body className="min-h-full flex flex-col bg-white">
         <Script
           id="schema-organization"
           type="application/ld+json"

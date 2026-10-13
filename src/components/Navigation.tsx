@@ -1,54 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { navLinks } from "@/app/site-config";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        background: scrolled ? "rgba(0,0,0,0.8)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "none",
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/85 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]" : "bg-white"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <span className="text-white font-semibold text-sm tracking-widest">뭉클랩</span>
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#work" className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors">
-              WORK
-            </a>
-            <a href="#tech" className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors">
-              TECH
-            </a>
-            <a href="#contact" className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors">
-              ABOUT
-            </a>
-            <a
-              href="https://github.com/moonklabs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-white text-xs tracking-widest transition-colors"
-            >
-              GITHUB
-            </a>
-          </div>
-        </div>
-        <a
-          href="#contact"
-          className="text-xs tracking-widest px-4 py-2 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-200"
-        >
-          문의하기 →
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#top" className="text-[19px] font-extrabold tracking-[-0.04em] text-black">
+          Moonklabs
         </a>
+        <div className="flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="text-[15px] font-medium text-zinc-700 hover:text-black transition-colors">
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <a
+            href="#contact"
+            className="text-[14px] font-semibold px-4 py-2 rounded-full bg-black text-white hover:bg-zinc-800 transition-colors"
+          >
+            도입 문의
+          </a>
+        </div>
       </div>
     </nav>
   );

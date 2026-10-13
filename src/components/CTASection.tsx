@@ -1,75 +1,73 @@
-"use client";
+import Reveal from "@/components/Reveal";
+import { contactEmail, sellerkingUrl } from "@/app/site-config";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+const mailSubject = "뭉클랩 에이전트 커머스 도입 문의";
+const mailBody = [
+  "안녕하세요, 에이전트 커머스 도입 상담을 원합니다.",
+  "",
+  "회사/브랜드명: ",
+  "입점 채널: ",
+  "관심 영역: 장사왕 순이익·정산 / 장사왕 광고·재고 Agent / Sprintable / 기업 맞춤 Agent 자동화",
+  "현재 과제: ",
+].join("\n");
+const mailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+const stars = Array.from({ length: 36 }, (_, i) => ({
+  left: (i * 37) % 100,
+  top: (i * 53) % 70,
+  delay: (i % 7) * 0.4,
+  size: i % 5 === 0 ? 2 : 1,
+}));
 
 export default function CTASection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className="py-32 px-6"
-      style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.08)" }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="font-black text-black"
-              style={{ fontSize: "clamp(3rem, 7vw, 6rem)", letterSpacing: "-0.04em", lineHeight: 0.95 }}
+    <section id="contact" className="relative overflow-hidden bg-black text-white">
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#0b0b2a] via-[#2b2a8a] to-[#6b5cff]" />
+      {stars.map((s, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className="star absolute rounded-full bg-white"
+          style={{ left: `${s.left}%`, top: `${s.top}%`, width: s.size, height: s.size, animationDelay: `${s.delay}s` }}
+        />
+      ))}
+
+      <div className="relative max-w-4xl mx-auto px-6 pt-32 sm:pt-40 pb-56 sm:pb-72 text-center">
+        <Reveal>
+          <h2 className="section-title">
+            장사는 에이전트에게,
+            <br />
+            결정은 당신에게.
+          </h2>
+          <p className="mt-5 text-lg text-white/70 leading-relaxed">
+            장사왕과 Sprintable로 검증한 방식으로, 귀사의 커머스 운영에 맞는 에이전트 팀을 함께 설계합니다.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <a
+              href={mailHref}
+              className="px-7 py-3.5 rounded-full text-[15px] font-semibold bg-white/15 backdrop-blur border border-white/30 hover:bg-white hover:text-black transition-colors"
             >
-              귀사의 업무에도
-              <br />Agent 자동화를 붙여보세요.
-            </motion.h2>
+              도입 상담 메일 보내기
+            </a>
+            <a
+              href={sellerkingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-7 py-3.5 rounded-full text-[15px] font-semibold bg-white text-black hover:bg-signal transition-colors"
+            >
+              장사왕 시작하기 ↗
+            </a>
           </div>
-          <div className="space-y-8">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.15, duration: 0.5 }}
-              className="text-zinc-500 text-base leading-relaxed"
-            >
-              Sprintable과 Sellerking으로 검증한 방식으로, 엔터프라이즈와 성장 기업의 반복 업무를 AI Agent
-              자동화로 전환할 수 있도록 함께 설계합니다.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.25, duration: 0.5 }}
-              className="flex flex-wrap gap-3"
-            >
-              <a
-                href="mailto:hello@moonklabs.com?subject=%EB%AD%89%ED%81%B4%EB%9E%A9%20Agent%20Automation%20%EB%AC%B8%EC%9D%98&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20Agent%20%EC%9E%90%EB%8F%99%ED%99%94%20%EB%8F%84%EC%9E%85%20%EC%83%81%EB%8B%B4%EC%9D%84%20%EC%9B%90%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%ED%9A%8C%EC%82%AC%EB%AA%85%3A%20%0A%EC%97%85%EB%AC%B4%20%EC%A1%B0%EC%A7%81%3A%20%0A%EA%B4%80%EC%8B%AC%20%EC%98%81%EC%97%AD%3A%20Sprintable%20%2F%20Sellerking%20%EA%B4%91%EA%B3%A0%20Agent%20%2F%20Sellerking%20%EC%9E%AC%EA%B3%A0%20Agent%20%2F%20%EA%B8%B0%EC%97%85%20%EB%A7%9E%EC%B6%A4%20Agent%20%EC%9E%90%EB%8F%99%ED%99%94%0A%ED%98%84%EC%9E%AC%20%EA%B3%BC%EC%A0%9C%3A%20"
-                className="px-8 py-4 text-sm font-medium tracking-wide text-white bg-black hover:bg-zinc-800 transition-colors"
-              >
-                도입 상담 메일 보내기 →
-              </a>
-              <a
-                href="https://github.com/moonklabs"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 text-sm font-medium tracking-wide text-black border border-black hover:bg-black hover:text-white transition-colors"
-              >
-                GITHUB
-              </a>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="text-xs text-zinc-400 tracking-wide"
-            >
-              ↳ 보통 1영업일 이내 회신드립니다 · Sprintable / Sellerking / 기업 맞춤 Agent 자동화 상담 가능
-            </motion.p>
-          </div>
-        </div>
+          <p className="mt-6 text-sm text-white/50">보통 1영업일 이내 회신드립니다 · {contactEmail}</p>
+        </Reveal>
       </div>
+
+      {/* 지평선: 거대한 원의 윗부분이 빛나는 행성처럼 보이도록 */}
+      <div
+        aria-hidden
+        className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-180px)] sm:top-[calc(100%-240px)] w-[260vw] sm:w-[180vw] aspect-square rounded-full bg-black"
+        style={{ boxShadow: "0 -2px 0 rgba(255,255,255,0.9), 0 -20px 60px rgba(190,180,255,0.9), 0 -60px 160px rgba(140,120,255,0.7)" }}
+      />
     </section>
   );
 }
