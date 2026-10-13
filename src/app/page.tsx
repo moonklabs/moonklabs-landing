@@ -3,8 +3,10 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
 import Marquee from "@/components/Marquee";
-import JangsawangSection from "@/components/JangsawangSection";
-import SprintableSection from "@/components/SprintableSection";
+import ApproachSection from "@/components/ApproachSection";
+import ProductsSection from "@/components/ProductsSection";
+import NumbersSection from "@/components/NumbersSection";
+import StorySection from "@/components/StorySection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 
@@ -18,15 +20,15 @@ const serviceSchema = {
   areaServed: "KR",
   serviceType: [...serviceList],
   knowsAbout: [
-    "AI Agent automation",
-    "Enterprise workflow automation",
-    "Sprintable",
-    "Sellerking ad agent",
-    "Sellerking inventory agent",
+    "Agent commerce",
+    "E-commerce net profit automation",
+    "Multi-channel settlement management",
+    "Sellerking",
+    "Sprintable AI Agent OS",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Moonklabs Agent Products",
+    name: "Moonklabs Agent Commerce Products",
     itemListElement: productHighlights.map((product) => ({
       "@type": "Offer",
       itemOffered: {
@@ -59,12 +61,14 @@ export default function Home() {
       <a href="#main" className="sr-only focus:not-sr-only fixed top-2 left-2 z-[100] bg-white text-black px-3 py-1 text-xs">
         본문 바로가기
       </a>
-      <main id="main" className="bg-black min-h-screen">
+      <main id="main" className="bg-white min-h-screen">
         <Navigation />
         <Hero />
         <Marquee />
-        <SprintableSection />
-        <JangsawangSection />
+        <ApproachSection />
+        <ProductsSection />
+        <NumbersSection />
+        <StorySection />
         <FAQSection />
         <CTASection />
         <Footer />
