@@ -21,7 +21,7 @@ export default function Navigation() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#top" className="text-[19px] font-extrabold tracking-[-0.04em] text-black">
-          Moonklabs<span className="font-medium">, inc.</span>
+          Moonklabs
         </a>
         <div className="flex items-center gap-8">
           <div className="hidden md:flex items-center gap-8">

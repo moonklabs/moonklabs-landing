@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="px-6 pt-8 pb-10 bg-black text-white">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-10 text-sm">
-          <div className="grid grid-cols-[auto_1fr] gap-x-10 gap-y-2 text-zinc-300">
+          <div className="grid grid-cols-[auto_1fr] gap-x-10 gap-y-2 content-start text-zinc-300">
             <span className="text-white">뭉클랩</span>
             <a href={`mailto:${contactEmail}`} className="hover:text-white transition-colors">
               {contactEmail}
@@ -41,10 +41,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div aria-hidden className="mt-20 font-extrabold tracking-[-0.06em] leading-[0.85] text-[clamp(3rem,13vw,11.5rem)] whitespace-nowrap">
-          Moonklabs<span className="font-normal tracking-[-0.04em]">, inc.</span>
+        <div aria-hidden className="mt-20 font-extrabold tracking-[-0.06em] leading-[0.85] text-[clamp(3.5rem,16.5vw,13.5rem)] whitespace-nowrap">
+          Moonklabs
         </div>
-        <p className="mt-8 text-sm text-zinc-500">© 2026 Moonklabs. All rights reserved.</p>
+        <p className="mt-8 text-sm text-zinc-500">© 2026 Moonklabs Co., Ltd. All rights reserved.</p>
       </div>
     </footer>
   );
