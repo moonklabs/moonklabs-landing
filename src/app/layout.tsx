@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Nanum_Pen_Script, Noto_Serif_KR } from "next/font/google";
 import Script from "next/script";
 import {
   contactEmail,
@@ -14,6 +14,21 @@ import "./globals.css";
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const notoSerifKr = Noto_Serif_KR({
+  variable: "--font-noto-serif-kr",
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+});
+
+const nanumPen = Nanum_Pen_Script({
+  variable: "--font-nanum-pen",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 const socialImage = `${siteUrl}/opengraph-image`;
@@ -92,7 +107,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#FBF7EE",
   colorScheme: "light" as const,
 };
 
@@ -104,9 +119,9 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${geistMono.variable} h-full antialiased`}
+      className={`${geistMono.variable} ${notoSerifKr.variable} ${nanumPen.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white">
+      <body className="min-h-full flex flex-col bg-cream">
         <Script
           id="schema-organization"
           type="application/ld+json"

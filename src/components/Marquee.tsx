@@ -13,12 +13,12 @@ export default function Marquee() {
   const repeated = [...items, ...items];
 
   return (
-    <div className="py-4 overflow-hidden bg-signal" aria-hidden>
+    <div className="py-4 overflow-hidden bg-peach" aria-hidden>
       <div className="marquee-inner">
         {repeated.map((item, i) => (
           <div key={i} className="flex items-center shrink-0">
-            <span className="text-black text-sm font-semibold tracking-wide whitespace-nowrap px-6">{item}</span>
-            <span className="text-black/40 text-sm">✦</span>
+            <span className="text-ink text-[15px] font-semibold tracking-tight whitespace-nowrap px-6">{item}</span>
+            <span className="text-ink/50 text-sm">♥</span>
           </div>
         ))}
       </div>

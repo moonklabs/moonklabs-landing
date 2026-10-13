@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import AgentMascot from "@/components/AgentMascot";
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -23,7 +24,7 @@ const feed: FeedItem[] = [
 
 const toneStyle: Record<FeedItem["tone"], { label: string; className: string }> = {
   done: { label: "완료", className: "text-signal bg-signal/10" },
-  report: { label: "보고", className: "text-violet-300 bg-violet-500/15" },
+  report: { label: "보고", className: "text-peach bg-peach/15" },
   approve: { label: "승인됨", className: "text-white bg-white/15" },
 };
 
@@ -95,17 +96,23 @@ function AgentWorkspace() {
           </AnimatePresence>
         </ul>
 
-        <div className="hidden lg:flex lg:col-span-2 rounded-2xl bg-white text-black p-6 flex-col">
-          <span className="text-xs font-semibold text-violet-600">승인 요청 · 광고 Agent</span>
-          <p className="text-lg font-bold leading-snug mt-3 tracking-tight">캠페인 B 예산 30%를 캠페인 A로 옮길까요?</p>
+        <div className="hidden lg:flex lg:col-span-2 rounded-2xl bg-cream text-ink p-6 flex-col">
+          <div className="flex items-center gap-2.5">
+            <AgentMascot still className="w-10 h-10 shrink-0" />
+            <div className="leading-tight">
+              <span className="block text-xs font-semibold text-violet-700">광고 Agent의 제안</span>
+              <span className="block text-[11px] text-zinc-500">방금 전 · 승인 대기</span>
+            </div>
+          </div>
+          <p className="text-lg font-bold leading-snug mt-4 tracking-tight">캠페인 B 예산 30%를 캠페인 A로 옮겨도 될까요?</p>
           <ul className="mt-4 space-y-1.5 text-sm text-zinc-600">
             <li>· 캠페인 B 전환율 3일 연속 하락</li>
             <li>· 캠페인 A ROAS 목표 대비 +38%</li>
             <li>· 예상 추가 마진 +120만원/주</li>
           </ul>
           <div className="mt-auto flex gap-2 pt-6">
-            <span className="flex-1 text-center py-2.5 rounded-full border border-black/15 text-sm font-semibold">보류</span>
-            <span className="flex-1 text-center py-2.5 rounded-full bg-black text-white text-sm font-semibold">승인</span>
+            <span className="flex-1 text-center py-2.5 rounded-full border border-black/15 bg-white text-sm font-semibold">보류</span>
+            <span className="flex-1 text-center py-2.5 rounded-full bg-ink text-white text-sm font-semibold">승인</span>
           </div>
         </div>
       </div>
@@ -171,14 +178,14 @@ export default function Hero() {
   const glowY = useTransform(scrollYProgress, [0, 1], ["-10%", "20%"]);
 
   return (
-    <section id="top" ref={trackRef} className="relative bg-white h-[260vh]">
+    <section id="top" ref={trackRef} className="relative bg-cream h-[260vh]">
       <div ref={stickyRef} className="sticky top-0 h-screen overflow-hidden">
-        <motion.div style={{ clipPath }} className="absolute inset-0 bg-[#0B0B0F]">
+        <motion.div style={{ clipPath }} className="absolute inset-0 bg-[#1E1814]">
           <motion.div aria-hidden style={{ y: glowY }} className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 grid-bg opacity-60" />
             <div
               className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[700px]"
-              style={{ background: "radial-gradient(ellipse, rgba(124,58,237,0.38) 0%, transparent 65%)", filter: "blur(30px)" }}
+              style={{ background: "radial-gradient(ellipse at 35% 40%, rgba(248,185,160,0.28) 0%, transparent 60%), radial-gradient(ellipse at 70% 55%, rgba(124,58,237,0.32) 0%, transparent 65%)", filter: "blur(30px)" }}
             />
           </motion.div>
           <motion.div
@@ -196,11 +203,30 @@ export default function Hero() {
           style={{ y: titleY, opacity: titleOpacity }}
           className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20 sm:pt-32"
         >
+          <div aria-hidden className="pointer-events-none absolute right-3 top-[68px] w-14 sm:right-8 sm:top-24 sm:w-20 lg:right-2 lg:top-28 lg:w-28">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ delay: 0.6, duration: 0.6, ease }}
+            >
+              <AgentMascot />
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
+            aria-hidden
+            className="pointer-events-none absolute right-[8.5rem] top-[4.5rem] hidden lg:block rounded-2xl rounded-br-sm bg-white px-4 py-2 text-sm font-medium text-ink shadow-[0_8px_24px_-12px_rgba(60,40,10,0.35)] border border-black/5"
+          >
+            오늘도 제가 먼저 볼게요
+          </motion.div>
+
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-600 px-4 py-1.5 rounded-full bg-zinc-100"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 px-4 py-1.5 rounded-full bg-white border border-black/5"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-violet-600" />
             Agent Commerce
@@ -210,20 +236,38 @@ export default function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8, ease }}
-            className="hero-title text-black mt-5"
+            className="hero-title text-ink mt-5"
           >
-            에이전트가 일하는{" "}
-            <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-lime-500 bg-clip-text text-transparent">커머스</span>
+            일은 에이전트가,
+            <br />
+            결정은{" "}
+            <span className="relative inline-block text-violet-700">
+              사장님
+              <svg aria-hidden viewBox="0 0 200 14" preserveAspectRatio="none" className="absolute left-0 right-0 -bottom-[0.12em] h-[0.28em] w-full overflow-visible">
+                <motion.path
+                  d="M3 9C40 3 90 12 197 4"
+                  stroke="currentColor"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  fill="none"
+                  vectorEffect="non-scaling-stroke"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ delay: 0.9, duration: 0.7, ease }}
+                />
+              </svg>
+            </span>
+            이.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-4 sm:mt-5 text-base sm:text-xl text-zinc-500 leading-relaxed"
+            className="mt-4 sm:mt-5 text-base sm:text-xl text-zinc-600 leading-relaxed"
           >
-            셀러는 결정하고, 에이전트는 실행합니다.
-            <br /> 정산부터 마진, 광고, 재고까지 장사왕과 Sprintable이 맡습니다.
+            정산·마진·광고·재고를 에이전트가 먼저 살피고 근거와 함께 보고합니다.
+            <br /> 돈이 움직이는 결정은 언제나 사장님의 몫이에요.
           </motion.p>
 
           <motion.div
@@ -232,10 +276,10 @@ export default function Hero() {
             transition={{ delay: 0.45, duration: 0.6 }}
             className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2.5 sm:gap-3"
           >
-            <a href="#contact" className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full text-[15px] font-semibold text-white bg-black hover:bg-zinc-800 transition-colors">
+            <a href="#contact" className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full text-[15px] font-semibold text-white bg-ink hover:bg-zinc-800 transition-colors">
               도입 상담하기
             </a>
-            <a href="#products" className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full text-[15px] font-semibold text-black bg-zinc-100 hover:bg-zinc-200 transition-colors">
+            <a href="#products" className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full text-[15px] font-semibold text-ink bg-white border border-black/10 hover:bg-white/60 transition-colors">
               제품 살펴보기
             </a>
           </motion.div>
