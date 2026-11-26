@@ -1,0 +1,23 @@
+{
+  "name": "moonklabs-contact-worker",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8791",
+    "deploy": "pnpm run verify && wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "verify": "tsc --noEmit && vitest run"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.4",
+    "typescript": "^5",
+    "vitest": "^4.1.4",
+    "wrangler": "^4.112.0"
+  }
+}

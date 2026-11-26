@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "moonklabs-contact",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "observability": { "enabled": true },
+  // Sends the inquiry email. The sender domain must be onboarded first:
+  //   npx wrangler email sending enable moonklabs.com
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://moonklabs.com,https://www.moonklabs.com",
+    "MAIL_FROM": "noreply@moonklabs.com",
+    "MAIL_TO": "hello@moonklabs.com"
+  },
+  // Secret (never commit): npx wrangler secret put GOOGLE_CHAT_WEBHOOK_URL
+  // moonklabs.com DNS is on Cloudflare; the custom domain creates its record and certificate.
+  "routes": [{ "pattern": "contact.moonklabs.com", "custom_domain": true }]
+}
