@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import {
+  companyInfo,
   contactEmail,
   siteDescription,
   siteName,
@@ -25,8 +26,11 @@ const organizationSchema = {
   alternateName: "Moonklabs",
   url: siteUrl,
   logo: `${siteUrl}/favicon.ico`,
+  legalName: companyInfo.legalName,
+  founder: { "@type": "Person", name: companyInfo.ceo },
+  address: { "@type": "PostalAddress", streetAddress: "무궁화로 20-38(로데오탑빌딩) 502호", addressLocality: "고양시 일산동구", addressRegion: "경기도", addressCountry: "KR" },
   email: contactEmail,
-  sameAs: ["https://github.com/moonklabs", "https://mkbot.ai", "https://sellerking.io", "https://sprintable.ai"],
+  sameAs: ["https://github.com/moonklabs", "https://mkbot.ai", "https://beejet.ai", "https://sellerking.io", "https://sprintable.ai"],
   description: siteDescription,
 };
 

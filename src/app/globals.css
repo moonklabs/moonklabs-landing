@@ -150,3 +150,9 @@
   to { opacity: 1; translate: 0 0; }
 }
 .rise-in { animation: rise-in 0.35s ease-out both; }
+
+/* Agents orbit the center; each one counter-rotates so its glyph stays upright. */
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+@keyframes orbit-counter { to { transform: rotate(-360deg); } }
+.orbit-spin { animation: orbit-spin 80s linear infinite; }
+.orbit-counter { animation: orbit-counter 80s linear infinite; }

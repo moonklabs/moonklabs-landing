@@ -2,38 +2,90 @@ export const siteUrl = "https://moonklabs.com";
 export const siteName = "뭉클랩";
 export const siteTitle = "뭉클랩 — 당신의 업무를 위한 AI 에이전트";
 export const contactEmail = "hello@moonklabs.com";
+/** 사업자 정보. 장사왕·MKbot.ai 사이트 푸터와 동일한 값입니다. */
+export const companyInfo = {
+  legalName: "(주) 뭉클랩",
+  ceo: "윤도선",
+  businessNumber: "488-88-02579",
+  address: "경기도 고양시 일산동구 무궁화로 20-38(로데오탑빌딩), 502호",
+} as const;
+
 export const lastUpdated = "2026-11-26";
 
 export const siteSlogan = "당신의 업무를 위한 AI 에이전트";
 
 export const siteDescription =
-  "뭉클랩은 당신의 업무를 위한 AI 에이전트를 만듭니다. 사무 업무는 MKbot.ai가, 커머스 운영은 장사왕이, 에이전트 팀 조율은 Sprintable이 맡고, 사람은 승인과 결정에 집중합니다.";
+  "뭉클랩은 당신의 업무를 위한 AI 에이전트를 만듭니다. 사무 업무는 MKbot.ai가, 셀러의 반복 업무는 Beejet이, 커머스 운영은 장사왕이, 에이전트 팀 조율은 Sprintable이 맡고, 사람은 승인과 결정에 집중합니다.";
 
 export const sellerkingUrl = "https://sellerking.io";
 export const sellerkingBlogUrl = "https://www.sellerking.io/blog";
 export const sprintableUrl = "https://sprintable.ai";
 export const mkbotUrl = "https://mkbot.ai";
-export const mkbotContactUrl = `${mkbotUrl}/#contact`;
+export const beejetUrl = "https://beejet.ai";
+/** Inquiry endpoint (the Worker in contact-worker/). Override for local testing with NEXT_PUBLIC_CONTACT_ENDPOINT. */
+export const contactEndpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "https://contact.moonklabs.com/contact";
+/** Must match INTERESTS in contact-worker/src/contact.ts. */
+export const contactInterests = ["MKbot.ai", "Beejet", "장사왕", "Sprintable", "기업 맞춤 Agent 자동화", "제휴 문의", "기타"] as const;
 export const githubUrl = "https://github.com/moonklabs";
 
 export interface NavLink {
   readonly label: string;
   readonly href: string;
+  /** Opens in a new tab (external sites). */
+  readonly external?: boolean;
   readonly badge?: string;
 }
 
+/** Top menu. The "도입 문의" button is rendered separately. */
 export const navLinks: readonly NavLink[] = [
-  { label: "일하는 방식", href: "#approach" },
-  { label: "MKbot.ai", href: "#mkbot", badge: "NEW" },
-  { label: "제품", href: "#products" },
-  { label: "숫자", href: "#numbers" },
-  { label: "회사", href: "#story" },
-  { label: "소식", href: "#news" },
-  { label: "FAQ", href: "#faq" },
+  { label: "제품", href: "/products/", badge: "NEW" },
+  { label: "회사", href: "/company/" },
+  { label: "뉴스", href: "/news/" },
+  { label: "블로그", href: "/blog/" },
+  { label: "채용", href: "/careers/" },
+];
+
+export const contactHref = "/contact/";
+export const partnerContactHref = "/contact/?type=partner";
+
+export interface FooterGroup {
+  readonly title: string;
+  readonly links: readonly NavLink[];
+}
+
+export const footerGroups: readonly FooterGroup[] = [
+  {
+    title: "제품",
+    links: [
+      { label: "MKbot.ai", href: mkbotUrl, external: true },
+      { label: "Beejet", href: beejetUrl, external: true },
+      { label: "장사왕", href: sellerkingUrl, external: true },
+      { label: "Sprintable", href: sprintableUrl, external: true },
+    ],
+  },
+  {
+    title: "회사",
+    links: [
+      { label: "회사 소개", href: "/company/" },
+      { label: "뉴스", href: "/news/" },
+      { label: "블로그", href: "/blog/" },
+      { label: "채용", href: "/careers/" },
+      { label: "GitHub", href: githubUrl, external: true },
+    ],
+  },
+  {
+    title: "문의",
+    links: [
+      { label: "도입 문의", href: contactHref },
+      { label: "제휴 문의", href: partnerContactHref },
+      { label: "개인정보 처리방침", href: "/privacy/" },
+    ],
+  },
 ];
 
 export const serviceList = [
   "MKbot.ai 기반 기업용 업무 자동화 봇 도입",
+  "Beejet 기반 셀러 반복 업무 자동화(정산 수집·광고 키워드 정리·품절 확인)",
   "장사왕 기반 멀티채널 커머스 순이익·정산 자동화",
   "장사왕 광고·재고 Agent 기반 커머스 운영 자동화",
   "Sprintable 기반 AI Agent 팀 오케스트레이션",
@@ -45,6 +97,11 @@ export const productHighlights = [
     name: "MKbot.ai",
     summary:
       "PC마다 한 대씩 일하는 기업용 업무 자동화 봇. 파일을 읽어 분석·보고서를 만들고, 내장 브라우저로 반복 웹 업무를 자동화하며, 제출·변경은 사람이 승인한 뒤에만 실행",
+  },
+  {
+    name: "Beejet",
+    summary:
+      "온라인 셀러의 반복 업무를 대신하는 이커머스 업무 AI 봇. 내장 브라우저로 마켓과 소싱처 화면을 직접 열어 정산 엑셀 받기, 광고 키워드 정리, 품절 확인까지 끝내고, 마켓을 바꾸는 일은 승인받은 뒤에만 실행",
   },
   {
     name: "장사왕",

@@ -1,17 +1,11 @@
 import { contactEmail, faqItems, productHighlights, serviceList, siteDescription, siteName, siteUrl } from "@/app/site-config";
-import Footer from "@/components/Footer";
+import HomeContact from "@/components/HomeContact";
 import Hero from "@/components/Hero";
-import Navigation from "@/components/Navigation";
-import IntroSection from "@/components/IntroSection";
-import FilmSection from "@/components/FilmSection";
-import JobsSection from "@/components/JobsSection";
-import ProductsSection from "@/components/ProductsSection";
-import MkbotSection from "@/components/MkbotSection";
-import NumbersSection from "@/components/NumbersSection";
-import StorySection from "@/components/StorySection";
+import PhilosophySection from "@/components/PhilosophySection";
+import ProductRows from "@/components/ProductRows";
+import SiteShell from "@/components/SiteShell";
 import NewsSection from "@/components/NewsSection";
 import FAQSection from "@/components/FAQSection";
-import CTASection from "@/components/CTASection";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -64,24 +58,14 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <a href="#main" className="sr-only fixed left-2 top-2 z-[100] rounded-full bg-fg px-3 py-1 text-xs text-ink focus:not-sr-only">
-        본문 바로가기
-      </a>
-      <main id="main" className="min-h-screen bg-ink">
-        <Navigation />
+      <SiteShell>
         <Hero />
-        <IntroSection />
-        <FilmSection />
-        <MkbotSection />
-        <ProductsSection />
-        <JobsSection />
-        <NumbersSection />
-        <StorySection />
+        <PhilosophySection />
+        <ProductRows />
         <NewsSection />
         <FAQSection />
-        <CTASection />
-        <Footer />
-      </main>
+        <HomeContact />
+      </SiteShell>
     </>
   );
 }
