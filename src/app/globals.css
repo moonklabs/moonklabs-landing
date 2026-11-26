@@ -1,87 +1,152 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --accent: #7C3AED;
-  --signal: #A3E635;
+@theme {
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Theme tokens: white ground, near-black text, warm gray surfaces,
+     black and warm-gray pill buttons. ink = page background, fg = text. */
+  --color-ink: #ffffff;
+  --color-fg: #0a0a0a;
+  --color-mute: #7d8187;
+  --color-card: #f7f6f4;
+  --color-pill: #edecea;
+  --color-pill-hover: #e3e1dd;
+  --color-line: #e6e5e3;
+  --color-line-strong: #d5d9e2;
+  --color-accent: #1f6fd1;
+  --color-accent-soft: #e8f2ff;
+  --color-warn: #c2410c;
+  --color-warn-soft: #fdeee4;
+  --color-ok: #0f7a37;
+  --color-ok-soft: #e4f5ea;
+
+  --shadow-float: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.06);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-signal: var(--signal);
-  --font-sans: "Pretendard Variable", Pretendard, -apple-system, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --font-mono: var(--font-geist-mono);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background: var(--color-ink);
+  }
+  body {
+    background: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    font-feature-settings: "ss06", "tnum";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
-html { scroll-behavior: smooth; }
-[id] { scroll-margin-top: 72px; }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  word-break: keep-all;
-  -webkit-font-smoothing: antialiased;
+@utility container-x {
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (min-width: 48rem) {
+    padding-inline: 2rem;
+  }
 }
 
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-.hero-title {
-  font-size: clamp(2.75rem, 6.4vw, 5.75rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
+/* Display headings: medium weight, tight tracking, tight leading. */
+@utility display-xl {
+  font-weight: 500;
+  letter-spacing: -0.02em;
   line-height: 1.12;
+  font-size: clamp(2.5rem, 5.4vw, 4rem);
 }
 
-.section-title {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.25;
+@utility display-lg {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
+@utility display-md {
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@utility btn-primary {
+  display: inline-flex;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-fg);
+  padding-inline: 1.5rem;
+  font-size: 1rem;
+  color: var(--color-ink);
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.85; }
 }
 
-.marquee-inner {
-  display: flex;
-  animation: marquee 30s linear infinite;
-  width: max-content;
+@utility btn-secondary {
+  display: inline-flex;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-pill);
+  padding-inline: 1.5rem;
+  font-size: 1rem;
+  color: var(--color-fg);
+  transition: background-color 0.2s;
+  &:hover { background: var(--color-pill-hover); }
 }
 
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
+/* Soft lavender wash behind the product film. */
+.film-backdrop {
+  background: linear-gradient(180deg, #b7aef0 0%, #cbc5f3 45%, #e4e1f5 100%);
 }
 
-.pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+@keyframes float-y {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+.float-y { animation: float-y 5s ease-in-out infinite; }
 
-@keyframes flow {
-  from { stroke-dashoffset: 24; }
-  to { stroke-dashoffset: 0; }
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+.caret::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.16em;
+  background: var(--color-fg);
+  animation: caret-blink 1s steps(1) infinite;
 }
 
-.flow-line { stroke-dasharray: 4 8; animation: flow 1.2s linear infinite; }
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
+@keyframes rise-in {
+  from { opacity: 0; translate: 0 8px; }
+  to { opacity: 1; translate: 0 0; }
 }
-
-.star { animation: twinkle 3s ease-in-out infinite; }
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-inner, .pulse-dot, .flow-line, .star { animation: none; }
-}
+.rise-in { animation: rise-in 0.35s ease-out both; }

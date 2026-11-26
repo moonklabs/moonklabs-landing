@@ -1,50 +1,68 @@
-import { contactEmail, githubUrl, navLinks, sellerkingUrl, sprintableUrl } from "@/app/site-config";
+import { SellerkingLogo, SprintableLogo } from "@/components/BrandLogo";
+import { contactEmail, githubUrl, mkbotUrl, navLinks, sellerkingUrl, siteSlogan, sprintableUrl } from "@/app/site-config";
 
 const productLinks = [
+  { label: "MKbot.ai", href: mkbotUrl },
   { label: "장사왕", href: sellerkingUrl },
   { label: "Sprintable", href: sprintableUrl },
   { label: "GitHub", href: githubUrl },
-];
+] as const;
+
+const COPYRIGHT_YEAR = 2026;
 
 export default function Footer() {
   return (
-    <footer className="px-6 pt-8 pb-10 bg-black text-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between gap-10 text-sm">
-          <div className="grid grid-cols-[auto_1fr] gap-x-10 gap-y-2 content-start text-zinc-300">
-            <span className="text-white">뭉클랩</span>
-            <a href={`mailto:${contactEmail}`} className="hover:text-white transition-colors">
+    <footer className="border-t border-line">
+      <div className="container-x py-14">
+        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+          <div>
+            <span className="text-xl font-semibold tracking-tight">Moonklabs</span>
+            <p className="mt-3 max-w-xs text-mute">{siteSlogan}</p>
+            <div className="mt-8 flex items-center gap-6">
+              <a href={sellerkingUrl} target="_blank" rel="noopener noreferrer" aria-label="장사왕 바로가기" className="transition-opacity hover:opacity-70">
+                <SellerkingLogo className="h-5" />
+              </a>
+              <a href={sprintableUrl} target="_blank" rel="noopener noreferrer" aria-label="Sprintable 바로가기" className="transition-opacity hover:opacity-70">
+                <SprintableLogo className="h-5" />
+              </a>
+            </div>
+          </div>
+          <div className="flex gap-16">
+            <div>
+              <p className="text-sm text-mute">제품</p>
+              <ul className="mt-4 space-y-3">
+                {productLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-60">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-sm text-mute">바로가기</p>
+              <ul className="mt-4 space-y-3">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className="transition-opacity hover:opacity-60">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="mt-14 flex flex-wrap justify-between gap-3 text-sm text-mute">
+          <p>
+            뭉클랩 · 대표 윤도선 ·{" "}
+            <a href={`mailto:${contactEmail}`} className="hover:text-fg">
               {contactEmail}
             </a>
-            <span className="text-white">대표 윤도선</span>
-            <span className="text-zinc-500">사람과 AI 에이전트가 하나의 팀으로 일하는 커머스</span>
-          </div>
-          <div className="flex gap-14 text-zinc-300">
-            <ul className="space-y-2">
-              {productLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <ul className="space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          </p>
+          <p>© {COPYRIGHT_YEAR} Moonklabs Co., Ltd. All rights reserved.</p>
         </div>
-
-        <div aria-hidden className="mt-20 font-extrabold tracking-[-0.06em] leading-[0.85] text-[clamp(3.5rem,16.5vw,13.5rem)] whitespace-nowrap">
-          Moonklabs
-        </div>
-        <p className="mt-8 text-sm text-zinc-500">© 2026 Moonklabs Co., Ltd. All rights reserved.</p>
       </div>
     </footer>
   );

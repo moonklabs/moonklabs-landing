@@ -1,215 +1,108 @@
-import type { ReactNode } from "react";
-import Reveal from "@/components/Reveal";
+import Image from "next/image";
+import { SellerkingLogo, SprintableLogo } from "@/components/BrandLogo";
+import FeatureCard from "@/components/FeatureCard";
 import { sellerkingUrl, sprintableUrl } from "@/app/site-config";
 
-function MockFrame({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="w-full rounded-[28px] overflow-hidden border border-white/10 bg-[#121216] font-mono text-xs shadow-[0_40px_120px_-40px_rgba(124,58,237,0.45)]">
-      <div className="flex items-center gap-2 px-5 py-4 border-b border-white/[0.08]">
-        <span className="w-2 h-2 rounded-full bg-signal" />
-        <span className="text-zinc-300 tracking-widest text-[10px]">{title}</span>
-        <span className="ml-auto flex gap-1">
-          <span className="w-2 h-2 rounded-full bg-zinc-800" />
-          <span className="w-2 h-2 rounded-full bg-zinc-800" />
-          <span className="w-2 h-2 rounded-full bg-zinc-800" />
-        </span>
-      </div>
-      <div className="p-6">{children}</div>
-    </div>
-  );
+interface Shot {
+  readonly src: string;
+  readonly width: number;
+  readonly height: number;
+  readonly alt: string;
 }
 
-function MarginMock() {
-  const rows = [
-    { ch: "채널 A", sale: 100, margin: 22 },
-    { ch: "채널 B", sale: 100, margin: 14 },
-    { ch: "채널 C", sale: 100, margin: 6 },
-  ];
-  return (
-    <MockFrame title="SELLERKING · 실질 마진">
-      <div className="text-zinc-500 text-[10px] tracking-widest mb-3">같은 상품 · 같은 판매가 · 다른 정산</div>
-      <div className="space-y-3">
-        {rows.map((r) => (
-          <div key={r.ch}>
-            <div className="flex justify-between text-zinc-400 mb-1">
-              <span>{r.ch}</span>
-              <span className={r.margin < 10 ? "text-red-400" : "text-signal"}>마진 {r.margin}%</span>
-            </div>
-            <div className="h-2 rounded-full overflow-hidden bg-white/[0.06]">
-              <div className="h-full bg-gradient-to-r from-violet-500 to-signal" style={{ width: `${r.margin * 4}%` }} />
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-5 p-4 rounded-2xl border border-violet-500/25 bg-violet-500/10 text-zinc-300 leading-relaxed font-sans text-[13px]">
-        <span className="text-violet-300 text-[10px] tracking-widest font-mono block mb-1">◆ AGENT INSIGHT</span>
-        채널 C는 수수료·배송비 반영 시 마진이 가장 낮습니다. 가격 정책 검토를 제안합니다.
-      </div>
-    </MockFrame>
-  );
-}
-
-function OpsAgentMock() {
-  return (
-    <MockFrame title="SELLERKING · 운영 AGENT">
-      <div className="space-y-2">
-        {[
-          { a: "광고", t: "캠페인 B · 전환 효율 하락 3일 연속", s: "REPORT" },
-          { a: "재고", t: "SKU 0412 · 7일 내 품절 예상", s: "REPORT" },
-          { a: "재고", t: "SKU 1180 · 회전율 저하 · 과재고", s: "WATCH" },
-          { a: "광고", t: "캠페인 A · 예산 소진 정상", s: "OK" },
-        ].map((row) => (
-          <div key={row.t} className="flex items-center gap-3 rounded-xl bg-white/[0.04] px-3 py-2.5">
-            <span className="text-[10px] text-zinc-500 w-7 shrink-0">{row.a}</span>
-            <span className="text-zinc-300 font-sans text-[13px] flex-1">{row.t}</span>
-            <span
-              className={`text-[9px] tracking-widest px-2 py-0.5 rounded-full border ${
-                row.s === "REPORT"
-                  ? "text-violet-300 border-violet-400/30"
-                  : row.s === "OK"
-                    ? "text-signal border-signal/30"
-                    : "text-zinc-400 border-white/15"
-              }`}
-            >
-              {row.s}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-4">
-        <span className="text-zinc-500">제안 2건 · 승인 대기</span>
-        <span className="flex gap-2 font-sans">
-          <span className="px-3 py-1 rounded-full border border-white/20 text-zinc-300">보류</span>
-          <span className="px-3 py-1 rounded-full bg-white text-black font-medium">승인</span>
-        </span>
-      </div>
-    </MockFrame>
-  );
-}
-
-function OrchestrationMock() {
-  const agents = [
-    { name: "Planner", x: 50, y: 14 },
-    { name: "정산", x: 14, y: 50 },
-    { name: "광고", x: 86, y: 50 },
-    { name: "재고", x: 30, y: 86 },
-    { name: "Reviewer", x: 70, y: 86 },
-  ];
-  return (
-    <MockFrame title="SPRINTABLE · AGENT OS">
-      <div className="relative aspect-[4/3] w-full">
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
-          {agents.map((a) => (
-            <line
-              key={a.name}
-              x1="50"
-              y1="50"
-              x2={a.x}
-              y2={a.y}
-              stroke="rgba(163,230,53,0.5)"
-              strokeWidth="0.4"
-              className="flow-line"
-              vectorEffect="non-scaling-stroke"
-            />
-          ))}
-        </svg>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-3 rounded-2xl bg-white text-black text-center font-sans">
-          <div className="text-[10px] tracking-widest font-mono">HUMAN</div>
-          <div className="text-sm font-bold">최종 승인</div>
-        </div>
-        {agents.map((a) => (
-          <div
-            key={a.name}
-            className="absolute -translate-x-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded-full border border-violet-400/40 bg-[#120d1f] text-violet-200 text-[11px] whitespace-nowrap"
-            style={{ left: `${a.x}%`, top: `${a.y}%` }}
-          >
-            {a.name}
-          </div>
-        ))}
-      </div>
-    </MockFrame>
-  );
-}
-
-const products = [
-  {
-    tag: "SELLERKING · 장사왕",
-    title: "얼마에 팔았는지보다\n얼마가 남았는지",
-    body:
-      "플랫폼마다 수수료, 리워드, 정산 주기가 달라 같은 상품도 남는 돈이 다릅니다. 장사왕은 채널별 매출·정산 데이터를 자동으로 수집·표준화하고, 매입가·배송원가를 결합해 상품별·플랫폼별 실질 마진을 보여주는 순이익 자동화 SaaS입니다.",
-    points: ["멀티채널 정산 자동 수집·표준화", "상품별·플랫폼별 실질 마진", "특허 받은 통합 정산 관리 기술"],
-    href: sellerkingUrl,
-    cta: "장사왕 바로가기",
-    visual: <MarginMock />,
+const SHOTS = {
+  sellerkingDashboard: {
+    src: "/images/products/sellerking-dashboard.png",
+    width: 3040,
+    height: 1554,
+    alt: "장사왕 화면. 총 매출, 쇼핑몰 비용, 매입비, 예상 순이익 요약 아래로 주문별 순이익과 마진율 표가 보인다.",
   },
-  {
-    tag: "SELLERKING · OPS AGENTS",
-    title: "놓치면 손실이 되는 신호를\n에이전트가 먼저",
-    body:
-      "광고 Agent는 비효율 캠페인을, 재고 Agent는 품절·과재고·회전율 저하를 먼저 감지합니다. 셀러는 대시보드를 들여다보는 대신, 근거가 붙은 제안을 보고 승인만 하면 됩니다.",
-    points: ["광고 성과·비효율 신호 감지", "품절·과재고 리스크 예측", "근거와 함께 다음 액션 제안"],
-    href: sellerkingUrl,
-    cta: "운영 Agent 알아보기",
-    visual: <OpsAgentMock />,
+  sellerkingDailyReport: {
+    src: "/images/products/sellerking-daily-report.png",
+    width: 1080,
+    height: 748,
+    alt: "장사왕 알림톡 리포트. 전날 매출과 순이익, 스마트스토어와 쿠팡 마켓플레이스별 매출·순이익이 정리되어 있다.",
   },
-  {
-    tag: "SPRINTABLE · AI AGENT OS",
-    title: "에이전트를 하나의\n팀으로 움직이게",
-    body:
-      "여러 에이전트가 함께 일하면 다음 병목은 오케스트레이션입니다. Sprintable은 위임 → 보고 → 승인 → 실행 구조로 역할별 에이전트를 조율하고, 최종 승인은 언제나 사람이 쥐도록 설계된 AI Agent OS입니다.",
-    points: ["역할별 에이전트 생성·조율", "위임·보고·승인·실행 워크플로우", "사람의 최종 승인 가드레일"],
-    href: sprintableUrl,
-    cta: "Sprintable 바로가기",
-    visual: <OrchestrationMock />,
+  sprintableBoard: {
+    src: "/images/products/sprintable-board.jpg",
+    width: 1600,
+    height: 1000,
+    alt: "Sprintable 보드 화면. 백로그, 개발 대기, 진행 중, 리뷰 중, 완료 열에 스토리 카드와 담당 에이전트가 표시되어 있다.",
   },
-];
+  sprintableMobile: {
+    src: "/images/products/sprintable-mobile-approval.jpg",
+    width: 560,
+    height: 1212,
+    alt: "Sprintable 모바일 화면. 대화 안에서 에이전트의 요청을 확인하고 승인하는 모습이다.",
+  },
+} as const satisfies Record<string, Shot>;
+
+function ShotImage({ shot, className }: { readonly shot: Shot; readonly className: string }) {
+  return <Image src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} unoptimized loading="lazy" className={className} />;
+}
 
 export default function ProductsSection() {
   return (
-    <section id="products" className="py-28 sm:py-36 px-6 bg-black text-white">
-      <div className="max-w-7xl mx-auto">
-        <Reveal className="text-center max-w-3xl mx-auto mb-20 sm:mb-28">
-          <h2 className="section-title text-white">
-            커머스 운영을 맡는
-            <br />
-            에이전트 제품군
-          </h2>
-          <p className="mt-5 text-lg text-zinc-400">순이익 계산부터 운영 판단, 에이전트 팀 조율까지.</p>
-        </Reveal>
-
-        <div className="space-y-28">
-          {products.map((p, i) => (
-            <div key={p.tag} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              <Reveal className={i % 2 === 1 ? "lg:order-2" : ""}>
-                <span className="inline-block text-xs font-semibold text-violet-300 bg-violet-500/15 px-3 py-1 rounded-full">{p.tag}</span>
-                <h3 className="text-white font-bold mt-5 whitespace-pre-line text-[clamp(1.9rem,3.4vw,2.75rem)] leading-[1.25] tracking-[-0.035em]">
-                  {p.title}
-                </h3>
-                <p className="text-zinc-400 leading-relaxed mt-6 max-w-xl">{p.body}</p>
-                <ul className="mt-7 space-y-2.5">
-                  {p.points.map((pt) => (
-                    <li key={pt} className="flex items-center gap-3 text-sm text-zinc-300">
-                      <span className="w-1.5 h-1.5 rounded-full bg-signal" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mt-9 text-sm font-semibold text-black bg-white rounded-full px-6 py-3 hover:bg-signal transition-colors"
-                >
-                  {p.cta} ↗
-                </a>
-              </Reveal>
-              <Reveal delay={0.1} className={i % 2 === 1 ? "lg:order-1" : ""}>
-                {p.visual}
-              </Reveal>
-            </div>
-          ))}
+    <section id="products" aria-labelledby="products-title" className="container-x pb-24 md:pb-36">
+      <div className="mx-auto max-w-3xl text-center">
+        <div className="flex items-center justify-center gap-6">
+          <a href={sellerkingUrl} target="_blank" rel="noopener noreferrer" aria-label="장사왕 바로가기" className="transition-opacity hover:opacity-70">
+            <SellerkingLogo className="h-7" />
+          </a>
+          <span className="h-5 w-px bg-line-strong" aria-hidden />
+          <a href={sprintableUrl} target="_blank" rel="noopener noreferrer" aria-label="Sprintable 바로가기" className="transition-opacity hover:opacity-70">
+            <SprintableLogo className="h-7 text-lg" />
+          </a>
         </div>
+        <h2 id="products-title" className="display-md mt-6">
+          커머스 운영과 에이전트 팀까지
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed">순이익 계산부터 운영 판단, 에이전트 팀 조율까지. 뭉클랩이 직접 만들고 운영하는 제품입니다.</p>
       </div>
+
+      <div className="mt-12 grid gap-5 md:mt-16 md:grid-cols-2 md:gap-6">
+        <FeatureCard
+          eyebrow={<SellerkingLogo />}
+          title="얼마에 팔았는지보다 얼마가 남았는지"
+          text="채널별 매출·정산 데이터를 자동으로 수집·표준화하고, 매입가·배송원가를 결합해 상품별·플랫폼별 실질 마진을 보여줍니다."
+        >
+          <div className="h-64 w-full overflow-hidden rounded-t-xl md:h-80">
+            <ShotImage shot={SHOTS.sellerkingDashboard} className="block h-full w-full object-cover object-left-top" />
+          </div>
+        </FeatureCard>
+        <FeatureCard
+          delay={0.08}
+          eyebrow={<SellerkingLogo />}
+          title="매일 아침, 전날 순이익을 알림으로"
+          text="매일 아침 전날 매출과 순이익 알림을 받아, 중요한 사업 지표를 빠르게 확인하고 대응할 수 있습니다."
+        >
+          <div className="h-64 w-full overflow-hidden rounded-t-xl md:h-80">
+            <ShotImage shot={SHOTS.sellerkingDailyReport} className="block h-full w-full object-cover object-top" />
+          </div>
+        </FeatureCard>
+        <FeatureCard
+          className="md:col-span-2"
+          eyebrow={
+            <>
+              <SprintableLogo className="h-6 text-fg" />
+              <span>AI Agent OS</span>
+            </>
+          }
+          title="사람과 에이전트가 한 팀으로 일합니다"
+          text="위임 → 보고 → 승인 → 실행 구조로 역할별 에이전트를 조율합니다. 밖에서도 휴대폰으로 일을 맡기고, 요청을 승인하고, 진행 상황을 확인합니다."
+        >
+          <div className="relative mx-auto w-full max-w-4xl">
+            <div className="overflow-hidden rounded-t-xl border border-b-0 border-line bg-ink shadow-[var(--shadow-float)]">
+              <ShotImage shot={SHOTS.sprintableBoard} className="block h-auto w-full" />
+            </div>
+            <div className="absolute -bottom-px right-3 w-20 overflow-hidden rounded-t-[1.1rem] border-[3px] sm:rounded-t-[1.5rem] sm:border-[5px] border-b-0 border-fg bg-ink shadow-[var(--shadow-float)] sm:right-10 sm:w-40 md:w-52">
+              <ShotImage shot={SHOTS.sprintableMobile} className="block h-auto w-full" />
+            </div>
+          </div>
+        </FeatureCard>
+      </div>
+
+      <p className="mt-8 text-center text-sm text-mute">장사왕·Sprintable의 실제 제품 화면입니다. 화면 속 수치는 데모 데이터입니다.</p>
     </section>
   );
 }

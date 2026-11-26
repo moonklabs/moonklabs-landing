@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 5005",
+    "news:update": "node scripts/update-news.mjs",
+    "prebuild": "npm run news:update",
     "build": "next build",
     "start": "next start -p 5005",
     "lint": "eslint"
