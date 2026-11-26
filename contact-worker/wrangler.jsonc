@@ -6,11 +6,11 @@
   "workers_dev": false,
   "observability": { "enabled": true },
   // Sends the inquiry email. The sender domain must be onboarded first:
-  //   npx wrangler email sending enable moonklabs.com
+  //   npx wrangler email sending enable notify.moonklabs.com (a subdomain keeps the root Gmail MX/SPF untouched)
   "send_email": [{ "name": "EMAIL" }],
   "vars": {
     "ALLOWED_ORIGINS": "https://moonklabs.com,https://www.moonklabs.com",
-    "MAIL_FROM": "noreply@moonklabs.com",
+    "MAIL_FROM": "noreply@notify.moonklabs.com",
     "MAIL_TO": "hello@moonklabs.com"
   },
   // Secret (never commit): npx wrangler secret put GOOGLE_CHAT_WEBHOOK_URL
