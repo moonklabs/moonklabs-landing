@@ -1,25 +1,39 @@
 export const siteUrl = "https://moonklabs.com";
 export const siteName = "뭉클랩";
-export const siteTitle = "뭉클랩 — 에이전트가 일하는 커머스, Agent Commerce";
+export const siteTitle = "뭉클랩 — 당신의 업무를 위한 AI 에이전트";
 export const contactEmail = "hello@moonklabs.com";
-export const lastUpdated = "2026-10-13";
+export const lastUpdated = "2026-11-26";
+
+export const siteSlogan = "당신의 업무를 위한 AI 에이전트";
 
 export const siteDescription =
-  "뭉클랩은 장사왕과 Sprintable로 에이전트 커머스를 만듭니다. 정산·마진·광고·재고 같은 커머스 운영은 AI 에이전트가 실행하고, 사람은 승인과 결정에 집중합니다.";
+  "뭉클랩은 당신의 업무를 위한 AI 에이전트를 만듭니다. 사무 업무는 MKbot.ai가, 커머스 운영은 장사왕이, 에이전트 팀 조율은 Sprintable이 맡고, 사람은 승인과 결정에 집중합니다.";
 
 export const sellerkingUrl = "https://sellerking.io";
+export const sellerkingBlogUrl = "https://www.sellerking.io/blog";
 export const sprintableUrl = "https://sprintable.ai";
+export const mkbotUrl = "https://mkbot.ai";
+export const mkbotContactUrl = `${mkbotUrl}/#contact`;
 export const githubUrl = "https://github.com/moonklabs";
 
-export const navLinks = [
+export interface NavLink {
+  readonly label: string;
+  readonly href: string;
+  readonly badge?: string;
+}
+
+export const navLinks: readonly NavLink[] = [
   { label: "일하는 방식", href: "#approach" },
+  { label: "MKbot.ai", href: "#mkbot", badge: "NEW" },
   { label: "제품", href: "#products" },
   { label: "숫자", href: "#numbers" },
   { label: "회사", href: "#story" },
+  { label: "소식", href: "#news" },
   { label: "FAQ", href: "#faq" },
 ];
 
 export const serviceList = [
+  "MKbot.ai 기반 기업용 업무 자동화 봇 도입",
   "장사왕 기반 멀티채널 커머스 순이익·정산 자동화",
   "장사왕 광고·재고 Agent 기반 커머스 운영 자동화",
   "Sprintable 기반 AI Agent 팀 오케스트레이션",
@@ -27,6 +41,11 @@ export const serviceList = [
 ] as const;
 
 export const productHighlights = [
+  {
+    name: "MKbot.ai",
+    summary:
+      "PC마다 한 대씩 일하는 기업용 업무 자동화 봇. 파일을 읽어 분석·보고서를 만들고, 내장 브라우저로 반복 웹 업무를 자동화하며, 제출·변경은 사람이 승인한 뒤에만 실행",
+  },
   {
     name: "장사왕",
     summary:
@@ -53,6 +72,11 @@ export const companyStats = [
 ] as const;
 
 export const faqItems = [
+  {
+    question: "MKbot.ai는 무엇인가요?",
+    answer:
+      "MKbot.ai는 PC마다 한 대씩 일하는 기업용 업무 자동화 봇입니다. 데스크톱 앱에서 파일을 읽어 분석하고 보고서를 만들며, 내장 브라우저로 사내 시스템과 협력사 포털의 반복 웹 업무를 대신 처리합니다. 제출·변경처럼 되돌리기 어려운 동작은 사람이 승인한 뒤에만 실행합니다. 자세한 내용은 mkbot.ai에서 확인할 수 있습니다.",
+  },
   {
     question: "에이전트 커머스란 무엇인가요?",
     answer:

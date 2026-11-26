@@ -2,11 +2,14 @@ import { contactEmail, faqItems, productHighlights, serviceList, siteDescription
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
-import Marquee from "@/components/Marquee";
-import ApproachSection from "@/components/ApproachSection";
+import IntroSection from "@/components/IntroSection";
+import FilmSection from "@/components/FilmSection";
+import JobsSection from "@/components/JobsSection";
 import ProductsSection from "@/components/ProductsSection";
+import MkbotSection from "@/components/MkbotSection";
 import NumbersSection from "@/components/NumbersSection";
 import StorySection from "@/components/StorySection";
+import NewsSection from "@/components/NewsSection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 
@@ -20,6 +23,9 @@ const serviceSchema = {
   areaServed: "KR",
   serviceType: [...serviceList],
   knowsAbout: [
+    "AI agents for work",
+    "MKbot.ai",
+    "Browser automation bot",
     "Agent commerce",
     "E-commerce net profit automation",
     "Multi-channel settlement management",
@@ -28,7 +34,7 @@ const serviceSchema = {
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Moonklabs Agent Commerce Products",
+    name: "Moonklabs AI Agent Products",
     itemListElement: productHighlights.map((product) => ({
       "@type": "Offer",
       itemOffered: {
@@ -58,17 +64,20 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <a href="#main" className="sr-only focus:not-sr-only fixed top-2 left-2 z-[100] bg-white text-black px-3 py-1 text-xs">
+      <a href="#main" className="sr-only fixed left-2 top-2 z-[100] rounded-full bg-fg px-3 py-1 text-xs text-ink focus:not-sr-only">
         본문 바로가기
       </a>
-      <main id="main" className="bg-white min-h-screen">
+      <main id="main" className="min-h-screen bg-ink">
         <Navigation />
         <Hero />
-        <Marquee />
-        <ApproachSection />
+        <IntroSection />
+        <FilmSection />
+        <MkbotSection />
         <ProductsSection />
+        <JobsSection />
         <NumbersSection />
         <StorySection />
+        <NewsSection />
         <FAQSection />
         <CTASection />
         <Footer />

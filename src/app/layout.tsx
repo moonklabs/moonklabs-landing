@@ -26,7 +26,7 @@ const organizationSchema = {
   url: siteUrl,
   logo: `${siteUrl}/favicon.ico`,
   email: contactEmail,
-  sameAs: ["https://github.com/moonklabs", "https://sellerking.io", "https://sprintable.ai"],
+  sameAs: ["https://github.com/moonklabs", "https://mkbot.ai", "https://sellerking.io", "https://sprintable.ai"],
   description: siteDescription,
 };
 
@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   creator: siteName,
   publisher: siteName,
   keywords: [
+    "업무용 AI 에이전트",
+    "AI 에이전트",
     "에이전트 커머스",
     "Agent Commerce",
     "커머스 AI 에이전트",
@@ -60,6 +62,9 @@ export const metadata: Metadata = {
     "Sellerking",
     "Sprintable",
     "스프린터블",
+    "MKbot.ai",
+    "업무 자동화 봇",
+    "브라우저 자동화",
     "이커머스 순이익 자동화",
     "멀티채널 정산 관리",
     "뭉클랩",
@@ -102,11 +107,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // Browser extensions add attributes to <html> before React loads.
     <html
       lang="ko"
       className={`${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-white">
+      <body className="min-h-full flex flex-col bg-ink">
         <Script
           id="schema-organization"
           type="application/ld+json"
