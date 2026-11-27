@@ -1,67 +1,62 @@
-import { SellerkingLogo, SprintableLogo } from "@/components/BrandLogo";
-import { contactEmail, githubUrl, mkbotUrl, navLinks, sellerkingUrl, siteSlogan, sprintableUrl } from "@/app/site-config";
-
-const productLinks = [
-  { label: "MKbot.ai", href: mkbotUrl },
-  { label: "장사왕", href: sellerkingUrl },
-  { label: "Sprintable", href: sprintableUrl },
-  { label: "GitHub", href: githubUrl },
-] as const;
+import Link from "next/link";
+import { companyInfo, contactEmail, footerGroups, type NavLink } from "@/app/site-config";
 
 const COPYRIGHT_YEAR = 2026;
 
+function FooterLink({ link }: { readonly link: NavLink }) {
+  const className = "transition-colors hover:text-white";
+  return link.external ? (
+    <a href={link.href} target="_blank" rel="noopener noreferrer" className={className}>
+      {link.label}
+    </a>
+  ) : (
+    <Link href={link.href} className={className}>
+      {link.label}
+    </Link>
+  );
+}
+
+const GROUP_LABEL: Record<string, string> = { 제품: "PRODUCTS", 회사: "COMPANY", 문의: "CONTACT" };
+
 export default function Footer() {
   return (
-    <footer className="border-t border-line">
-      <div className="container-x py-14">
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+    <footer className="bg-[#0a0d14] text-white">
+      <div className="container-x py-16">
+        <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
             <span className="text-xl font-semibold tracking-tight">Moonklabs</span>
-            <p className="mt-3 max-w-xs text-mute">{siteSlogan}</p>
-            <div className="mt-8 flex items-center gap-6">
-              <a href={sellerkingUrl} target="_blank" rel="noopener noreferrer" aria-label="장사왕 바로가기" className="transition-opacity hover:opacity-70">
-                <SellerkingLogo className="h-5" />
-              </a>
-              <a href={sprintableUrl} target="_blank" rel="noopener noreferrer" aria-label="Sprintable 바로가기" className="transition-opacity hover:opacity-70">
-                <SprintableLogo className="h-5" />
-              </a>
-            </div>
+            <p className="mt-6 text-[1.75rem] font-semibold leading-snug tracking-tight">
+              일은 에이전트에게,
+              <br />
+              결정은 사람에게
+            </p>
           </div>
-          <div className="flex gap-16">
-            <div>
-              <p className="text-sm text-mute">제품</p>
-              <ul className="mt-4 space-y-3">
-                {productLinks.map((link) => (
-                  <li key={link.href}>
-                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-60">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm text-mute">바로가기</p>
-              <ul className="mt-4 space-y-3">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <a href={link.href} className="transition-opacity hover:opacity-60">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="grid grid-cols-2 gap-x-16 gap-y-10 sm:grid-cols-3">
+            {footerGroups.map((group) => (
+              <div key={group.title}>
+                <p className="text-xs font-medium tracking-[0.12em] text-[#8fb4ff]">{GROUP_LABEL[group.title] ?? group.title}</p>
+                <ul className="mt-5 space-y-3.5 text-white/85">
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <FooterLink link={link} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="mt-14 flex flex-wrap justify-between gap-3 text-sm text-mute">
+        <div className="mt-14 space-y-1.5 border-t border-white/15 pt-8 text-sm text-white/55">
           <p>
-            뭉클랩 · 대표 윤도선 ·{" "}
-            <a href={`mailto:${contactEmail}`} className="hover:text-fg">
+            {companyInfo.legalName} · 대표 {companyInfo.ceo} · 사업자등록번호 {companyInfo.businessNumber}
+          </p>
+          <p>{companyInfo.address}</p>
+          <p>
+            <a href={`mailto:${contactEmail}`} className="hover:text-white">
               {contactEmail}
             </a>
           </p>
-          <p>© {COPYRIGHT_YEAR} Moonklabs Co., Ltd. All rights reserved.</p>
+          <p className="pt-2">© {COPYRIGHT_YEAR} Moonklabs Co., Ltd. All rights reserved.</p>
         </div>
       </div>
     </footer>

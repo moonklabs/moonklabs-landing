@@ -9,6 +9,8 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    // The inquiry Worker is its own package with its own checks.
+    "contact-worker/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
