@@ -7,7 +7,7 @@ import { contactHref, mkbotUrl } from "@/app/site-config";
 export default function MkbotSection() {
   return (
     <section id="mkbot" aria-labelledby="mkbot-title" className="container-x pb-24 md:pb-36">
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-3xl md:text-center">
         <p className="text-sm text-mute">MKbot.ai · 기업용 AI 업무 스튜디오</p>
         <h2 id="mkbot-title" className="display-md mt-3">
           시키면 끝까지 하는 업무 자동화 봇
@@ -49,15 +49,15 @@ export default function MkbotSection() {
         </FeatureCard>
       </div>
 
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-        <Link href={contactHref} className="btn-primary">
+      <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-6 sm:gap-y-3">
+        <Link href={contactHref} className="btn-primary max-sm:h-12">
           우리 회사에 도입 문의
         </Link>
-        <a href={mkbotUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline-offset-4 hover:underline">
+        <a href={mkbotUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-1 underline-offset-4 hover:underline">
           mkbot.ai 둘러보기 <ArrowUpRight className="size-4" aria-hidden />
         </a>
       </div>
-      <p className="mt-5 text-center text-sm text-mute">제품 화면 시안 · 샘플 데이터</p>
+      <p className="mt-5 text-sm text-mute md:text-center">제품 화면 시안 · 샘플 데이터</p>
     </section>
   );
 }

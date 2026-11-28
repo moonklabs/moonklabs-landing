@@ -18,10 +18,10 @@ export default function PhilosophySection() {
             AI 에이전트
           </h2>
         </div>
-        <ul className="grid gap-px overflow-hidden rounded-2xl bg-white/10 md:grid-cols-3 md:gap-0 md:overflow-visible md:bg-transparent">
+        <ul className="grid md:grid-cols-3">
           {pillars.map((pillar, i) => (
             <Reveal key={pillar.no} delay={i * 0.08} className="h-full">
-              <li className="h-full list-none bg-[#0b1220] px-0 md:border-l md:border-white/15 md:px-8">
+              <li className="h-full list-none border-t border-white/15 py-8 md:border-l md:border-t-0 md:px-8 md:py-0">
                 <p className="text-sm text-[#8fb4ff]">{pillar.no}</p>
                 <h3 className="mt-5 text-2xl font-semibold tracking-tight">{pillar.title}</h3>
                 <p className="mt-1 text-xs tracking-[0.12em] text-white/50">{pillar.en}</p>

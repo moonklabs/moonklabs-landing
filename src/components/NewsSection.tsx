@@ -20,14 +20,14 @@ export default function NewsSection() {
             </h2>
             <p className="mt-3 text-lg leading-relaxed">수상과 지원사업 선정, 특허 등 뭉클랩의 소식을 전합니다.</p>
           </div>
-          <Link href="/news/" className="inline-flex items-center gap-1 underline-offset-4 hover:underline">
+          <Link href="/news/" className="inline-flex min-h-11 items-center gap-1 underline-offset-4 hover:underline">
             뉴스 더보기 <ArrowRight className="size-4" aria-hidden />
           </Link>
         </div>
 
-        <ul className="mt-10 grid gap-x-6 gap-y-10 md:mt-12 md:grid-cols-3">
+        <ul className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-x-6 md:gap-y-10 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden [&>*]:w-[82%] [&>*]:shrink-0 [&>*]:snap-start md:[&>*]:w-auto">
           {press.map((post, i) => (
-            <NewsCard key={post.url} post={post} index={i} />
+            <NewsCard key={post.url} post={post} index={i} revealMargin="0px" />
           ))}
         </ul>
       </div>

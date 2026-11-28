@@ -116,13 +116,14 @@ export default function AgentOrbit() {
   }, []);
 
   return (
-    <div ref={boxRef} className="relative mx-auto aspect-square w-full max-w-[34rem]" role="img" aria-label="뭉클랩의 AI 에이전트 8종이 사람의 승인을 받아 일하는 모습">
-      <p className="absolute right-0 top-0 z-10 text-right text-xs font-medium uppercase tracking-[0.12em] text-mute">
+    <div className="relative mx-auto w-full max-w-[34rem] pb-12 sm:pb-0">
+      <p className="mb-3 text-center text-[11px] font-medium uppercase tracking-[0.12em] text-mute sm:absolute sm:right-0 sm:top-0 sm:z-10 sm:mb-0 sm:text-right sm:text-xs">
         Delegating
-        <span className="mt-1.5 flex items-center justify-end gap-2 text-accent">
+        <span className="mt-1 flex items-center justify-center gap-2 text-accent sm:mt-1.5 sm:justify-end">
           <span className="size-2 rounded-full bg-accent" aria-hidden /> Human approves
         </span>
       </p>
+      <div ref={boxRef} className="relative aspect-square w-full" role="img" aria-label="뭉클랩의 AI 에이전트 8종이 사람의 승인을 받아 일하는 모습">
 
       <div
         className="absolute left-1/2 top-1/2 size-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full"
@@ -147,6 +148,7 @@ export default function AgentOrbit() {
       </div>
 
       <AgentMessage agent={onStage.agent} stage={onStage.stage} />
+      </div>
     </div>
   );
 }
