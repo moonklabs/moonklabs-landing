@@ -7,8 +7,8 @@ import { beejetUrl } from "@/app/site-config";
 export default function BeejetSection() {
   return (
     <section id="beejet" aria-labelledby="beejet-title" className="container-x pb-24 md:pb-36">
-      <div className="mx-auto max-w-3xl text-center">
-        <div className="flex items-center justify-center gap-2.5">
+      <div className="mx-auto max-w-3xl md:text-center">
+        <div className="flex items-center gap-2.5 md:justify-center">
           <Image src="/images/beejet/beejet-mark.svg" alt="" width={28} height={28} unoptimized className="size-7" />
           <span className="text-xl font-semibold tracking-tight">Beejet</span>
         </div>
@@ -45,12 +45,12 @@ export default function BeejetSection() {
         </FeatureCard>
       </div>
 
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-        <a href={beejetUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+      <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-6 sm:gap-y-3">
+        <a href={beejetUrl} target="_blank" rel="noopener noreferrer" className="btn-primary max-sm:h-12">
           Beejet 베타 신청 <ArrowUpRight className="size-4" aria-hidden />
         </a>
       </div>
-      <p className="mt-5 text-center text-sm text-mute">제품 화면 시안 · 상품과 숫자는 예시입니다</p>
+      <p className="mt-5 text-sm text-mute md:text-center">제품 화면 시안 · 상품과 숫자는 예시입니다</p>
     </section>
   );
 }

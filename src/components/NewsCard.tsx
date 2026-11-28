@@ -19,9 +19,16 @@ function sizedImage(url: string): string {
   return url.includes(RESIZABLE_HOST) ? `${url}&w=${IMAGE_WIDTH}&q=75` : url;
 }
 
-export default function NewsCard({ post, index }: { readonly post: NewsPost; readonly index: number }) {
+interface NewsCardProps {
+  readonly post: NewsPost;
+  readonly index: number;
+  /** Pass "0px" when cards sit in a swipeable row so the peeking card is already visible. */
+  readonly revealMargin?: string;
+}
+
+export default function NewsCard({ post, index, revealMargin }: NewsCardProps) {
   return (
-    <Reveal delay={(index % 3) * 0.06}>
+    <Reveal delay={(index % 3) * 0.06} margin={revealMargin}>
       <li className="list-none">
         <a href={post.url} target="_blank" rel="noopener noreferrer" className="group block">
           <div className="aspect-[120/63] overflow-hidden rounded-2xl bg-card">

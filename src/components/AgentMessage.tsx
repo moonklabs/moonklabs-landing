@@ -13,12 +13,12 @@ export default function AgentMessage({ agent, stage }: AgentMessageProps) {
   const working = stage === "working";
 
   return (
-    <p className="absolute -bottom-5 left-1/2 z-10 flex w-max max-w-[94%] -translate-x-1/2 items-center gap-2.5 rounded-full border border-line-strong bg-ink px-4 py-1.5 text-sm shadow-[var(--shadow-float)]">
+    <p className="absolute -bottom-12 left-1/2 z-10 flex w-max max-w-[94%] -translate-x-1/2 flex-col items-start gap-0.5 rounded-2xl border border-line-strong bg-ink px-4 py-2 text-sm sm:-bottom-5 sm:flex-row sm:items-center sm:gap-2.5 sm:rounded-full sm:py-1.5 shadow-[var(--shadow-float)]">
       <span className="flex shrink-0 items-center gap-1.5 text-xs font-medium text-mute">
         <span className="size-2 rounded-full" style={{ background: shape.color }} aria-hidden />
         {shape.name}
       </span>
-      <span key={`${agent}-${stage}`} className="rise-in min-w-0 truncate">
+      <span key={`${agent}-${stage}`} className="rise-in min-w-0 sm:truncate">
         {working ? line.working : line.result}
         {working ? (
           <span className="ml-1 inline-flex gap-0.5 align-middle" aria-hidden>

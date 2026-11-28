@@ -97,7 +97,7 @@ export default function ContactForm({ className = "bg-card" }: { readonly classN
       {/* Honeypot: hidden from people, tempting to bots. */}
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
       <label className="mt-5 flex items-start gap-3 text-sm text-mute">
-        <input name="consent" type="checkbox" required className="mt-1 size-4 accent-[var(--color-fg)]" />
+        <input name="consent" type="checkbox" required className="mt-0.5 size-5 shrink-0 accent-[var(--color-fg)]" />
         <span>
           상담 목적의 개인정보(회사명, 이름, 이메일, 연락처) 수집·이용에 동의합니다.{" "}
           <Link href="/privacy/" target="_blank" className="underline underline-offset-2">

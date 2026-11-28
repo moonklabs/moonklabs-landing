@@ -115,11 +115,13 @@ function Row({ row }: { readonly row: ProductRow }) {
             </div>
           ))}
         </dl>
-        <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3 font-medium">
-          <a href={row.link.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 border-b border-fg pb-0.5">
-            {row.link.label} <ArrowUpRight className="size-4" aria-hidden />
+        <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-0 font-medium md:mt-9">
+          <a href={row.link.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center">
+            <span className="inline-flex items-center gap-1 border-b border-fg pb-0.5">
+              {row.link.label} <ArrowUpRight className="size-4" aria-hidden />
+            </span>
           </a>
-          <Link href={`/contact/?interest=${encodeURIComponent(row.interest)}`} className="text-mute transition-colors hover:text-fg">
+          <Link href={`/contact/?interest=${encodeURIComponent(row.interest)}`} className="inline-flex min-h-11 items-center text-mute transition-colors hover:text-fg">
             도입 문의 →
           </Link>
         </div>
